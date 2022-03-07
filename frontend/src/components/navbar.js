@@ -10,8 +10,14 @@ import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import '../App.css';
 import img from "../img/logo.png"
+import { useKeycloak } from '@react-keycloak/web';
+import LoginPage from './login';
+import User from './user';
+import Logout from './logout';
 
 function Navbar() {
+
+    const { initialized, keycloak } = useKeycloak();
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -28,26 +34,26 @@ function Navbar() {
                                 <Button color="inherit">
                                     <Link to="/">Home</Link>
                                 </Button>
-                                {
+                                {initialized && keycloak?.authenticated &&
                                     <Button color="inherit">
                                         <Link to="/courses">Courses</Link>
                                     </Button>
                                 }
-                                {<Button color="inherit">
+                                {initialized && keycloak?.authenticated &&
+                                <Button color="inherit">
                                     <Link to="/cautaMentor">Cauta Mentor</Link>
                                 </Button>}
                             </Typography>
                         </Grid>
                     </Grid>
                     <Grid className="rightGrid">
-                        {/* {initialized && keycloak?.authenticated ? */}
+                        {console.log(keycloak?.authenticated)}
+                        {initialized && keycloak?.authenticated ?
                             <div style={{ display: 'inline-block' }}>
-                                Login
-                                {/* <User keycloak={keycloak} />
-                                <Logout keycloak={keycloak} /> */}
-                            </div>
-                            {/* </div> : <LoginPage></LoginPage>
-                        } */}
+                                <User keycloak={keycloak} />
+                                <Logout keycloak={keycloak} />
+                            </div> : <LoginPage></LoginPage>
+                        }
                     </Grid>
                 </Toolbar>
             </AppBar>

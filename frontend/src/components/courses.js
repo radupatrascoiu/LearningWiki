@@ -1,15 +1,3 @@
-// import * as React from 'react';
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
-// import TableContainer from '@mui/material/TableContainer';
-// import TableHead from '@mui/material/TableHead';
-// import TableRow from '@mui/material/TableRow';
-// import Paper from '@mui/material/Paper';
-// import { Container } from '@mui/material';
-// import { Link } from 'react-router-dom';
-// import { Button } from '@mui/material';
-
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -17,9 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import Grid from "@mui/material/Grid";
+import { makeStyles } from "@mui/styles";
+import Container from "@mui/material/Container";
+import { useEffect, useState } from 'react';
+import { useKeycloak } from '@react-keycloak/web';
 
 const useStyles = makeStyles({
     card: {
@@ -35,8 +25,20 @@ const useStyles = makeStyles({
 const Courses = () => {
 
     const classes = useStyles();
+    const [error, setError] = useState(false);
+    const { initialized, keycloak } = useKeycloak();
 
-    return (
+    useEffect(async () => {
+        if (keycloak && initialized) {
+            try {
+
+            } catch (error) {
+                setError(true);
+            }
+        }
+    }, [keycloak, initialized])
+
+    return (initialized && keycloak?.authenticated &&
         <div>
             <Container>
                 <Typography
@@ -67,9 +69,7 @@ const Courses = () => {
                     </CardActions>
                     </Card>
 
-
-
-                    <Card className={classes.card}>
+                    <Card className={classes.card} sx={{ marginLeft: "10px" }}>
                     <CardMedia
                         className={classes.media}
                         component="img"

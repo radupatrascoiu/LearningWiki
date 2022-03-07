@@ -15,14 +15,15 @@
   .menu-items {
     display: inline;
   }
+
   .rightGrid {
     right: 0;
     position: absolute;
   }
 
   .leftGrid {
-    right: 0;
-    position: relative;
+    position: absolute;
+    height: 60px;
   }
   
   a {
@@ -57,6 +58,6 @@
   }
 
   .logo {
-    height: 100px;
+    height: 60px;
     width: 100px;
   }
