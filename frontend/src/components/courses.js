@@ -10,6 +10,7 @@ import { makeStyles } from "@mui/styles";
 import Container from "@mui/material/Container";
 import { useEffect, useState } from 'react';
 import { useKeycloak } from '@react-keycloak/web';
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
     card: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
   });
 
 const Courses = () => {
-
+    const navigate = useNavigate();
     const classes = useStyles();
     const [error, setError] = useState(false);
     const { initialized, keycloak } = useKeycloak();
@@ -47,7 +48,7 @@ const Courses = () => {
                 variant="h2"
                 align="center"
                 />
-                <Grid container padding={50} spacing={20} justify="center">
+                <Grid container padding={20} spacing={10} justify="center">
                     <Card className={classes.card}>
                     <CardMedia
                         className={classes.media}
@@ -65,7 +66,7 @@ const Courses = () => {
                     </CardContent>
                     <CardActions>
                         <Button size="small">Enroll me</Button>
-                        <Button size="small">Learn More</Button>
+                        <Button size="small" onClick={() => navigate("/courses/matematica")}>Learn More</Button>
                     </CardActions>
                     </Card>
 

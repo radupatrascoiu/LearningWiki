@@ -9,11 +9,12 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import '../App.css';
-import img from "../img/logo.png"
+import logo from "../img/logo.png"
 import { useKeycloak } from '@react-keycloak/web';
 import LoginPage from './login';
 import User from './user';
 import Logout from './logout';
+import Avatar from 'react-avatar';
 
 function Navbar() {
 
@@ -26,7 +27,7 @@ function Navbar() {
                     <Grid className="leftGrid" container>
                         <Grid item>
                             <Typography type="title" variant="h6" component="div">
-                                    <img className="logo" src={img} alt="Learning Wiki"/>
+                                    <img className="logo" src={logo} alt="Learning Wiki"/>
                             </Typography>
                         </Grid>
                         <Grid item>

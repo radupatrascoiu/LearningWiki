@@ -5,6 +5,8 @@ import Navbar from './components/navbar';
 import Courses from './components/courses';
 import NotFound from './components/notfound';
 import CautaMentor from './components/cautaMentor';
+import Course from './components/course';
+import FooterComponent from './components/footer';
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home/>} />
           <Route exact path='/courses' element={<Courses/>} />
+          <Route exact path='/courses/matematica' element={<Course/>} />
           <Route exact path='/cautaMentor' element={<CautaMentor/>} />
           <Route path='*' element={<NotFound />}></Route>
           {/* <Route exact path="/course/:courseID" component={Course} />
@@ -28,6 +31,7 @@ function App() {
           <Route path="*"><NotFound /></Route> */}
         </Routes>
       </div>
+      <FooterComponent></FooterComponent>
     </BrowserRouter>
   </div>
   );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Faq from 'react-faq-component';
-import logo2 from "../img/logo.png"
+import logo from "../img/logo2.png"
 import '../styles/home.css';
 
 const Home = () => {
@@ -28,9 +28,9 @@ const Home = () => {
 
     return (
         <div className="container">
-          {/* <img className='logo2' src={logo2} alt="Learning Wiki"/> */}
-          <h2>Bine ati venit pe platforma Learning Wiki, site-ul destinat acumularii rapide a cunostintelor in domendiul matematicii si al informaticii!</h2>
-          <h4>Pregateste-te pentru evaluarile din timpul liceului, bacalaureat si admitere!</h4>
+          <img className='logo2' src={logo} alt="Learning Wiki"/>
+          <h2>Bine ați venit pe platforma Learning Wiki, site-ul destinat acumulării rapide a cunoștințelor în domeniul matematicii și al informaticii!</h2>
+          <h4>Pregătește-te pentru evaluările din timpul liceului, bacalaureat și admitere!</h4>
           <h5>Mult succes!</h5>
           <Faq data={data} style = {{pading:'0px 10px'}}/>
         </div>

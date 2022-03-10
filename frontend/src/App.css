@@ -22,8 +22,20 @@
   }
 
   .leftGrid {
-    position: absolute;
-    height: 60px;
+    /* position: absolute;
+    height: 60px; */
+    display: flex;
+    align-items: center;
+    padding: 0px 0px;
+    height: 80px;
+  }
+
+  .logo {
+    height: 80px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
   
   a {
@@ -55,9 +67,4 @@
   .read-or-hide{
     color: rgb(255, 255, 255);
     cursor: pointer;
-  }
-
-  .logo {
-    height: 60px;
-    width: 100px;
   }
