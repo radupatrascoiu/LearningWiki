@@ -1,0 +1,14 @@
+.chapters {
+    display: flex;
+}
+
+.sidebar {
+    background-color: white;
+    margin-top: 10px;
+    height: 100%;
+    width: 15%;
+}
+
+.chapter-selection {
+    margin-top: 50px;
+}

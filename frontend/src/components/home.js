@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Faq from 'react-faq-component';
 import logo from "../img/logo2.png"
 import '../styles/home.css';
+import Typography from '@mui/material/Typography';
 
 const Home = () => {
     const data = {
@@ -29,12 +30,31 @@ const Home = () => {
     return (
         <div className="container">
           <img className='logo2' src={logo} alt="Learning Wiki"/>
-          <h2>Bine ați venit pe platforma Learning Wiki, site-ul destinat acumulării rapide a cunoștințelor în domeniul matematicii și al informaticii!</h2>
-          <h4>Pregătește-te pentru evaluările din timpul liceului, bacalaureat și admitere!</h4>
-          <h5>Mult succes!</h5>
+          <Typography
+              color="textPrimary"
+              gutterBottom
+              variant="h4"
+          >
+          Bine ați venit pe platforma Learning Wiki, site-ul destinat acumulării rapide a cunoștințelor în domeniul matematicii și al informaticii!
+          </Typography>
+
+          <Typography
+              color="textPrimary"
+              gutterBottom
+              variant="h5"
+          >
+          Pregătește-te pentru evaluările din timpul liceului, bacalaureat și admitere!
+          </Typography>
+
+          <Typography
+              color="textPrimary"
+              gutterBottom
+              variant="h6"
+          >
+          Mult succes!
+          </Typography>
           <Faq data={data} style = {{pading:'0px 10px'}}/>
         </div>
-  
       );
 }
  

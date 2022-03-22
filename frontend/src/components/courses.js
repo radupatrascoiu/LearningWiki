@@ -14,21 +14,22 @@ import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
     card: {
-      maxWidth: 445,
+      maxWidth: 500,
       boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
       backgroundColor: "#fafafa",
+      transition: "transform 0.25s ease-in-out",
+      "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
     },
     media: {
       height: 400,
     },
-  });
+});
 
 const Courses = () => {
     const navigate = useNavigate();
     const classes = useStyles();
     const [error, setError] = useState(false);
     const { initialized, keycloak } = useKeycloak();
-
     useEffect(async () => {
         if (keycloak && initialized) {
             try {
@@ -47,14 +48,21 @@ const Courses = () => {
                 gutterBottom
                 variant="h2"
                 align="center"
-                />
-                <Grid container padding={20} spacing={10} justify="center">
-                    <Card className={classes.card}>
+                padding="20px"
+                >
+                Ce vrei sa inveti?
+                </Typography>
+                <Grid container width="100%" justify="center" margin="auto">
+                    <Card 
+                    className={classes.card} 
+                    sx={{ marginLeft: "6%" }}
+                    >
                     <CardMedia
                         className={classes.media}
                         component="img"
                         alt="matematica"
                         image={require('../img/matematica-logo.jpg')}
+                        onClick={() => navigate("/courses/matematica")}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
@@ -70,12 +78,16 @@ const Courses = () => {
                     </CardActions>
                     </Card>
 
-                    <Card className={classes.card} sx={{ marginLeft: "10px" }}>
+                    <Card 
+                    className={classes.card} 
+                    sx={{ marginLeft: "1%" }}
+                    >
                     <CardMedia
                         className={classes.media}
                         component="img"
                         alt="informatica"
                         image={require('../img/informatica-logo.jpg')}
+                        onClick={() => navigate("/courses/matematica")}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">

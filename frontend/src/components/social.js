@@ -1,12 +1,12 @@
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core";
+import { makeStyles } from "@mui/material/styles";
+import { Grid } from "@mui/material";
 
-import InstagramIcon from "@material-ui/icons/Instagram";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import HomeIcon from "@material-ui/icons/Home";
+import InstagramIcon from "@mui/icons/Instagram";
+import FacebookIcon from "@mui/icons/Facebook";
+import GitHubIcon from "@mui/icons/GitHub";
+import HomeIcon from "@mui/icons/Home";
 // if you wanto to add twitter
-// import TwitterIcon from '@material-ui/icons/Twitter';
+// import TwitterIcon from '@mui/icons/Twitter';
 
 import { socialMedia } from "data/socialMedia";
 

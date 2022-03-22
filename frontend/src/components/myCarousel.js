@@ -13,6 +13,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { margin } from '@mui/system';
 
 
 const MyCarousel = () =>  {
@@ -29,13 +30,13 @@ const MyCarousel = () =>  {
   const CARD_STYLE = {
       height: '400px',
       width: '400px',
-      paddingTop: '10px',
+      paddingTop: '20px',
       textAlign: 'center',
       background: '#52C0F5',
       color: '#FFF',
       fontSize: '12px',
       textTransform: 'uppercase',
-      borderRadius: '10px'
+      borderRadius: '10px',
   }
 
   return (

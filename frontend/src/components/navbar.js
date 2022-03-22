@@ -14,11 +14,13 @@ import { useKeycloak } from '@react-keycloak/web';
 import LoginPage from './login';
 import User from './user';
 import Logout from './logout';
-import Avatar from 'react-avatar';
+import Avatar from '@mui/material/Avatar';
+import profil from "../img/profil.jpg"
 
 function Navbar() {
 
     const { initialized, keycloak } = useKeycloak();
+    const settings = ["Profile", "Singout"]
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -36,21 +38,25 @@ function Navbar() {
                                     <Link to="/">Home</Link>
                                 </Button>
                                 {initialized && keycloak?.authenticated &&
-                                    <Button color="inherit">
-                                        <Link to="/courses">Courses</Link>
-                                    </Button>
+                                <Button color="inherit">
+                                    <Link to="/courses">Courses</Link>
+                                </Button>
                                 }
                                 {initialized && keycloak?.authenticated &&
                                 <Button color="inherit">
                                     <Link to="/cautaMentor">Cauta Mentor</Link>
                                 </Button>}
+                                {initialized && keycloak?.authenticated &&
+                                <Button color="inherit">
+                                    <Link to="/chat">Chat</Link>
+                                </Button>}
                             </Typography>
                         </Grid>
                     </Grid>
                     <Grid className="rightGrid">
-                        {console.log(keycloak?.authenticated)}
                         {initialized && keycloak?.authenticated ?
                             <div style={{ display: 'inline-block' }}>
+                                {/* <Avatar src={profil} /> */}
                                 <User keycloak={keycloak} />
                                 <Logout keycloak={keycloak} />
                             </div> : <LoginPage></LoginPage>
