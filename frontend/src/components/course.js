@@ -132,7 +132,7 @@ const Course = () => {
                             variant="contained"
                             sx={{ mx: "auto", marginBottom: "10px" }}
                             size="large"
-                            onClick={() => navigate("/courses/matematica/materiale")}>
+                            onClick={() => navigate("/courses/matematica/teste")}>
                             Teste
                         </Button>
 
@@ -148,7 +148,7 @@ const Course = () => {
                             variant="contained"
                             sx={{ mx: "auto", marginBottom: "10px" }} 
                             size="large"
-                            onClick={() => navigate("/courses/matematica/materiale")}>
+                            onClick={() => navigate("/courses/matematica/videoclipuri")}>
                             Videoclipuri
                         </Button>
 

@@ -9,6 +9,9 @@ import Course from './components/course';
 import FooterComponent from './components/footer';
 import Chat from './components/chat';
 import Materiale from './components/Materiale';
+import Teste from './components/Teste';
+import Videoclipuri from './components/Videoclipuri';
+import Video from './components/Video';
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
           <Route exact path='/courses' element={<Courses/>} />
           <Route exact path='/courses/matematica' element={<Course/>} />
           <Route exact path='/courses/matematica/materiale' element={<Materiale/>} />
+          <Route exact path='/courses/matematica/teste' element={<Teste/>} />
+          <Route exact path='/courses/matematica/videoclipuri' element={<Videoclipuri/>} />
+          <Route exact path='/courses/matematica/videoclipuri/:videoId' element={<Video/>} />
           <Route exact path='/cautaMentor' element={<CautaMentor/>} />
           <Route exact path='/chat' element={<Chat/>} />
           <Route path='*' element={<NotFound />}></Route>
@@ -35,7 +41,7 @@ function App() {
           <Route path="*"><NotFound /></Route> */}
         </Routes>
       </div>
-      {/* <FooterComponent></FooterComponent> */}
+      {/* <FooterComponent /> */}
     </BrowserRouter>
   </div>
   );

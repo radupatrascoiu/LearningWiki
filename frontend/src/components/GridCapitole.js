@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid'
 import CapitolCard from '../components/CapitolCard'
 import '../styles/materiale.css'
 
-export default function GridCapitole() {
+const GridCapitole = ({ clasa }) => {
     const [notes, setNotes] = useState([]);
 
 //   useEffect(() => {
@@ -62,7 +62,7 @@ export default function GridCapitole() {
 
     const caps = [cap1, cap2, cap3, cap4, cap5]
 
-  return (
+  return (clasa === "9" &&
     <div className='chapter-selection'>
       <Container sige="lg">
         <Grid container spacing={3}>
@@ -76,3 +76,5 @@ export default function GridCapitole() {
     </div>
   )
 }
+
+export default GridCapitole;

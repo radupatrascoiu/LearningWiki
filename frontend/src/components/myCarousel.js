@@ -14,7 +14,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { margin } from '@mui/system';
-
+import { Typography } from '@mui/material';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const MyCarousel = () =>  {
   const [open, setOpen] = useState(false)
@@ -26,6 +27,21 @@ const MyCarousel = () =>  {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const theme = createTheme({
+    typography: {
+      body2: {
+          fontSize: [20, "!important"]
+      }
+    },
+    overrides: {
+      MuiTypography: {
+        body2: {
+          fontSize: [20, "!important"]
+        }
+      }
+    }
+  });
 
   const CARD_STYLE = {
       height: '400px',
@@ -40,9 +56,27 @@ const MyCarousel = () =>  {
   }
 
   return (
-    <ReactCardCarousel autoplay={ false } autoplay_speed={ 2500 }>
+    <ReactCardCarousel autoplay={ true } autoplay_speed={ 2500 }>
       <div style={ CARD_STYLE }>
-        <h4>Cornel Popescu</h4>
+        <Typography
+              variant="h6"
+              color="textSecondary"
+              align="center"
+        >
+          Cornel Popescu
+        </Typography>
+
+        <ThemeProvider theme={theme}>
+          <div className="App">
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              align="center"
+              padding="10px">
+              Un profesor bun se menține el însuși la standardele impuse elevilor săi.
+            </Typography>
+          </div>
+        </ThemeProvider>
         <img className="logo-card" src={popcorn} alt="Learning Wiki"/>
         <div className="btn">
             <Button variant="contained" color="secondary" href="#" onClick={handleClickOpen}>Select</Button>
@@ -69,28 +103,101 @@ const MyCarousel = () =>  {
         </div>
       </div>
       <div style={ CARD_STYLE }>
-        <h4>Ciprian Dobre</h4>
+        <Typography
+              variant="h6"
+              color="textSecondary"
+              align="center"
+        >
+          Ciprian Dobre
+        </Typography>
+
+        <ThemeProvider theme={theme}>
+          <div className="App">
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              align="center"
+              padding="10px">
+              Un profesor bun se menține el însuși la standardele impuse elevilor săi.
+            </Typography>
+          </div>
+        </ThemeProvider>
+
         <img className="logo-card" src={dobre} alt="Learning Wiki"/>
         <div className="btn">
               <Button variant="contained" color="secondary" href="#">Select</Button>
         </div>
       </div>
       <div style={ CARD_STYLE }>
-        <h4>Ghiu Cristian</h4>
+        <Typography
+              variant="h6"
+              color="textSecondary"
+              align="center"
+        >
+          Cristian Ghiu 
+        </Typography>
+
+        <ThemeProvider theme={theme}>
+          <div className="App">
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              align="center"
+              padding="10px">
+              Un profesor bun se menține el însuși la standardele impuse elevilor săi.
+            </Typography>
+          </div>
+        </ThemeProvider>
         <img className="logo-card" src={ghiu} alt="Learning Wiki"/>
         <div className="btn">
               <Button variant="contained" color="secondary" href="#">Select</Button>
         </div>
       </div>
       <div style={ CARD_STYLE }>
-        <h4>Boicea Alexandru</h4>
+        <Typography
+              variant="h6"
+              color="textSecondary"
+              align="center"
+        >
+          Alexandru Boicea
+        </Typography>
+
+        <ThemeProvider theme={theme}>
+          <div className="App">
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              align="center"
+              padding="10px">
+              Un profesor bun se menține el însuși la standardele impuse elevilor săi.
+            </Typography>
+          </div>
+        </ThemeProvider>
         <img className="logo-card" src={boicea} alt="Learning Wiki"/>
         <div className="btn">
               <Button variant="contained" color="secondary" href="#">Select</Button>
         </div>
       </div>
       <div style={ CARD_STYLE }>
-        <h4>Catalin Negru</h4>
+        <Typography
+              variant="h6"
+              color="textSecondary"
+              align="center"
+        >
+          Catalin Negru
+        </Typography>
+
+        <ThemeProvider theme={theme}>
+          <div className="App">
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              align="center"
+              padding="10px">
+              Un profesor bun se menține el însuși la standardele impuse elevilor săi.
+            </Typography>
+          </div>
+        </ThemeProvider>
         <img className="logo-card" src={negru} alt="Learning Wiki"/>
         <div className="btn">
               <Button variant="contained" color="secondary" href="#">Select</Button>

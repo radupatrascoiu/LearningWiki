@@ -14,7 +14,7 @@ const tokenLogger = (tokens) => {
 }
 
 ReactDOM.render(
-  <React.StrictMode>
+    <React.StrictMode>
       <ReactKeycloakProvider
         authClient={keycloak}
         onEvent={eventLogger}

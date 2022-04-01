@@ -57,10 +57,10 @@
 
   .container {
     background: rgba(103, 103, 126, 0);
-    width: 90%;
+    width: 100%;
     margin: auto;
     justify-content: center;
-}
+  }
   
   .text{
     display: inline;

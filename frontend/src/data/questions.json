@@ -1,0 +1,32 @@
+[
+    {
+        "title":"Are ana mere?",
+        "options": ["Da", "Poate", "Nu", "Nu stiu"],
+        "correctOptionIndex": "0"
+    },
+    {
+        "title":"Cate kg avea sabia lui Mihai Viteazu",
+        "options": ["Da", "Poate", "Nu", "Nu stiu"],
+        "correctOptionIndex": "0"
+    },
+    {
+        "title":"Cate clase are Albert Nbn",
+        "options": ["Da", "Poate", "Nu", "Nu stiu"],
+        "correctOptionIndex": "0"
+    },
+    {
+        "title":"Esti Bucuresti capitala tarii?",
+        "options": ["Da", "Poate", "Nu", "Nu stiu"],
+        "correctOptionIndex": "0"
+    },
+    {
+        "title":"Este Romania cea mai slaba nationala?",
+        "options": ["Da", "Poate", "Nu", "Nu stiu"],
+        "correctOptionIndex": "0"
+    },
+    {
+        "title":"Hau hau mau mau?",
+        "options": ["Da", "Poate", "Nu", "Nu stiu"],
+        "correctOptionIndex": "0"
+    }
+]

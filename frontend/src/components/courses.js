@@ -17,7 +17,7 @@ const useStyles = makeStyles({
       maxWidth: 500,
       boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
       backgroundColor: "#fafafa",
-      transition: "transform 0.25s ease-in-out",
+      transition: "transform 0.5s ease-in-out",
       "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
     },
     media: {
@@ -55,7 +55,7 @@ const Courses = () => {
                 <Grid container width="100%" justify="center" margin="auto">
                     <Card 
                     className={classes.card} 
-                    sx={{ marginLeft: "6%" }}
+                    sx={{ marginLeft: "6%", marginBottom: "5%" }}
                     >
                     <CardMedia
                         className={classes.media}
@@ -80,7 +80,7 @@ const Courses = () => {
 
                     <Card 
                     className={classes.card} 
-                    sx={{ marginLeft: "1%" }}
+                    sx={{ marginLeft: "1%", marginBottom: "5%"}}
                     >
                     <CardMedia
                         className={classes.media}
