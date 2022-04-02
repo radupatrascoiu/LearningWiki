@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Button } from '@mui/material'
 import { useKeycloak } from '@react-keycloak/web'
 
-const Logout = () =>{
+const Logout = () => {
 
     const { keycloak } = useKeycloak()
 

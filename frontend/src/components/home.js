@@ -17,6 +17,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { withHooksKC } from '../utils/withHooksKC';
 
 const Home = () => {
   const { initialized, keycloak } = useKeycloak();
@@ -232,4 +233,4 @@ const Home = () => {
   );
 }
 
-export default Home;
+export default withHooksKC(Home);

@@ -12,25 +12,26 @@ import Materiale from './components/Materiale';
 import Teste from './components/Teste';
 import Videoclipuri from './components/Videoclipuri';
 import Video from './components/Video';
+import { withHooksKC } from './utils/withHooksKC';
 
 function App() {
   return (
     <div className="App">
-    <BrowserRouter>
-      <Navbar></Navbar>
-      <div className="container">
-        <Routes>
-          <Route exact path='/' element={<Home/>} />
-          <Route exact path='/courses' element={<Courses/>} />
-          <Route exact path='/courses/matematica' element={<Course/>} />
-          <Route exact path='/courses/matematica/materiale' element={<Materiale/>} />
-          <Route exact path='/courses/matematica/teste' element={<Teste/>} />
-          <Route exact path='/courses/matematica/videoclipuri' element={<Videoclipuri/>} />
-          <Route exact path='/courses/matematica/videoclipuri/:videoId' element={<Video/>} />
-          <Route exact path='/cautaMentor' element={<CautaMentor/>} />
-          <Route exact path='/chat' element={<Chat/>} />
-          <Route path='*' element={<NotFound />}></Route>
-          {/* <Route exact path="/course/:courseID" component={Course} />
+      <BrowserRouter>
+        <Navbar></Navbar>
+        <div className="container">
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+            <Route exact path='/courses' element={<Courses />} />
+            <Route exact path='/courses/matematica' element={<Course />} />
+            <Route exact path='/courses/matematica/materiale' element={<Materiale />} />
+            <Route exact path='/courses/matematica/teste' element={<Teste />} />
+            <Route exact path='/courses/matematica/videoclipuri' element={<Videoclipuri />} />
+            <Route exact path='/courses/matematica/videoclipuri/:videoId' element={<Video />} />
+            <Route exact path='/cautaMentor' element={<CautaMentor />} />
+            <Route exact path='/chat' element={<Chat />} />
+            <Route path='*' element={<NotFound />}></Route>
+            {/* <Route exact path="/course/:courseID" component={Course} />
           <Route exact path="/course/:courseID/edit" component={CourseEdit} />
           <Route path="/course/:courseID/presencelist/:presenceListID" component={presenceList} />
           <Route path="/statistics/:courseID/:courseNo" component={Statistics} />
@@ -39,12 +40,12 @@ function App() {
           
           <Route exact path="/create/course" component={CourseOptions} />
           <Route path="*"><NotFound /></Route> */}
-        </Routes>
-      </div>
-      {/* <FooterComponent /> */}
-    </BrowserRouter>
-  </div>
+          </Routes>
+        </div>
+        {/* <FooterComponent /> */}
+      </BrowserRouter>
+    </div>
   );
 }
 
-export default App;
+export default withHooksKC(App);
