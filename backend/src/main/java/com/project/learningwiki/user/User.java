@@ -1,27 +1,41 @@
 package com.project.learningwiki.user;
 
+import com.project.learningwiki.solved_test.SolvedTest;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Setter
 @Getter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
     private String email;
-    private String phoneNumber;
     private String role;
+    @OneToMany(mappedBy = "user")
+    private List<SolvedTest> solvedTestList = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                ", solvedTestList=" + solvedTestList +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -12,6 +12,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @Component
 public class UserFilter implements Filter {
@@ -30,19 +31,20 @@ public class UserFilter implements Filter {
         KeycloakAuthenticationToken token = (KeycloakAuthenticationToken) request.getUserPrincipal();
         System.out.println(token);
         KeycloakPrincipal principal = (KeycloakPrincipal) token.getPrincipal();
-        if (principal != null && userRepository.findByName(principal.getName()) == null) {
+        if (principal != null) {
             KeycloakSecurityContext session = principal.getKeycloakSecurityContext();
             AccessToken accessToken = session.getToken();
-            User user = new User();
-
             var emailId = accessToken.getEmail();
             var name = accessToken.getName();
+            if(userRepository.findByEmail(emailId) == null) {
+                User user = new User();
 
-            user.setRole(token.getAuthorities().toString());
-            user.setEmail(emailId);
-            user.setName(name);
-            user.setPhoneNumber("222");
-            userRepository.save(user);
+                user.setRole(token.getAuthorities().toString());
+                user.setEmail(emailId);
+                user.setName(name);
+                user.setSolvedTestList(new ArrayList<>());
+                userRepository.save(user);
+            }
         }
         filterChain.doFilter(request, response);
     }
