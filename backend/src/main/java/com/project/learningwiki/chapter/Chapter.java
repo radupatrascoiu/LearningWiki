@@ -20,12 +20,19 @@ public class Chapter {
     private Integer id;
 
     private String name;
-//    private Integer year;
+    private String description;
     private String content;
 
     @ManyToOne
     @JoinColumn(name = "TEST_ID")
     private Test test;
+
+    public Chapter(String name, String description, String content, Test test) {
+        this.name = name;
+        this.description = description;
+        this.content = content;
+        this.test = test;
+    }
 
     @Override
     public boolean equals(Object o) {

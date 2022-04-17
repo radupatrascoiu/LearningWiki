@@ -21,4 +21,12 @@ public class CourseService {
         }
         return courses;
     }
+
+    public CourseDto getCourseByName(String courseName) {
+        Course course = courseRepository.findByName(courseName).orElse(null);
+        if (course != null) {
+            return new CourseDto(course);
+        }
+        return null;
+    }
 }

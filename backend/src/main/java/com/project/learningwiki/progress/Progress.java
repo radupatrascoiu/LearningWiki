@@ -19,12 +19,10 @@ public class Progress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
     private User user;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
     private Course course;
 
     private String content;

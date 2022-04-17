@@ -9,11 +9,12 @@ import Grid from "@mui/material/Grid";
 import { makeStyles } from "@mui/styles";
 import Container from "@mui/material/Container";
 import { useEffect, useState } from 'react';
-import { useKeycloak } from '@react-keycloak/web';
 import { useNavigate } from "react-router-dom";
+import { useKeycloak } from '@react-keycloak/web';
 import { userApi } from '../services/userApi';
 import matematica_logo from '../img/matematica-logo.jpg'
 import informatica_logo from '../img/informatica-logo.jpg'
+import { capitalizeFirstLetter } from '../utils/util';
 
 const useStyles = makeStyles({
     card: {
@@ -47,9 +48,6 @@ const Courses = () => {
         }
     }, [keycloak, initialized])
 
-    // console.log(error)
-    // console.log("AAA " + courses[0].photo)
-
     return (initialized && keycloak?.authenticated &&
         <div>
             <Container>
@@ -79,11 +77,12 @@ const Courses = () => {
                                         component="img"
                                         alt={`${course.name}`}
                                         image={`${course.name}` === "matematica" ? matematica_logo : informatica_logo}
+                                        // image={require(course.name)}
                                         onClick={() => navigate(`/courses/${course.name}`)}
                                     />
                                     <CardContent>
                                         <Typography gutterBottom variant="h5" component="div">
-                                            {course.name}
+                                            {capitalizeFirstLetter(course.name)}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
                                             {course.infos}

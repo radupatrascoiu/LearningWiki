@@ -6,6 +6,6 @@ export const withHooksKC = (Component) => {
         const initialized = keycloakObject["initialized"]
         const keycloak = keycloakObject["keycloak"]
 
-        return <Component initialized={initialized} keycloak={keycloak} {...props}/>;
+        return <Component initialized={initialized} keycloak={keycloak} {...props} />;
     };
 };

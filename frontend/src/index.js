@@ -14,14 +14,14 @@ const tokenLogger = (tokens) => {
 }
 
 ReactDOM.render(
-    <React.StrictMode>
-      <ReactKeycloakProvider
-        authClient={keycloak}
-        onEvent={eventLogger}
-        onTokens={tokenLogger}
-      >
-        <App />
-      </ReactKeycloakProvider>
-    </React.StrictMode>,
-    document.getElementById('root')
+  <React.StrictMode>
+    <ReactKeycloakProvider
+      authClient={keycloak}
+      onEvent={eventLogger}
+      onTokens={tokenLogger}
+    >
+      <App />
+    </ReactKeycloakProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );

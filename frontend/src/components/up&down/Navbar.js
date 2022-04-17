@@ -4,18 +4,16 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-// import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
-import '../App.css';
-import logo from "../img/logo.png"
+import '../../App.css';
+import logo from "../../img/logo.png"
 import { useKeycloak } from '@react-keycloak/web';
-import LoginPage from './login';
-import User from './user';
-import Logout from './logout';
+import LoginPage from '../authentication/Login';
+import User from '../authentication/User';
+import Logout from '../authentication/Logout';
 import Avatar from '@mui/material/Avatar';
-import profil from "../img/profil.jpg"
+import profil from "../../img/profil.jpg"
 
 function Navbar() {
 
@@ -24,12 +22,12 @@ function Navbar() {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" style={{background: "Black" }}>
+            <AppBar position="static" style={{ background: "Black" }}>
                 <Toolbar>
                     <Grid className="leftGrid" container>
                         <Grid item>
                             <Typography type="title" variant="h6" component="div">
-                                    <img className="logo" src={logo} alt="Learning Wiki"/>
+                                <img className="logo" src={logo} alt="Learning Wiki" />
                             </Typography>
                         </Grid>
                         <Grid item>
@@ -38,18 +36,18 @@ function Navbar() {
                                     <Link to="/">Home</Link>
                                 </Button>
                                 {initialized && keycloak?.authenticated &&
-                                <Button color="inherit">
-                                    <Link to="/courses">Courses</Link>
-                                </Button>
+                                    <Button color="inherit">
+                                        <Link to="/courses">Courses</Link>
+                                    </Button>
                                 }
                                 {initialized && keycloak?.authenticated &&
-                                <Button color="inherit">
-                                    <Link to="/cautaMentor">Cauta Mentor</Link>
-                                </Button>}
+                                    <Button color="inherit">
+                                        <Link to="/cautaMentor">Cauta Mentor</Link>
+                                    </Button>}
                                 {initialized && keycloak?.authenticated &&
-                                <Button color="inherit">
-                                    <Link to="/chat">Chat</Link>
-                                </Button>}
+                                    <Button color="inherit">
+                                        <Link to="/chat">Chat</Link>
+                                    </Button>}
                             </Typography>
                         </Grid>
                     </Grid>

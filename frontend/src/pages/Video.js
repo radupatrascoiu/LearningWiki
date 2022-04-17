@@ -11,5 +11,5 @@ const Video = ({ id }) => {
         </div>
     );
 }
- 
+
 export default Video;

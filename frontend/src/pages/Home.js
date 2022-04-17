@@ -7,7 +7,7 @@ import acces_gratuit from "../img/acces_gratuit.png"
 import resurse_digitale from "../img/resurse_digitale.png"
 import '../styles/home.css';
 import Typography from '@mui/material/Typography';
-import FooterComponent from './footer';
+import FooterComponent from '../components/up&down/Footer';
 import { Button } from '@mui/material';
 import { useKeycloak } from '@react-keycloak/web';
 import { useNavigate } from "react-router-dom";
@@ -46,7 +46,7 @@ const Home = () => {
     rows: [
       {
         title: "Cum îmi fac un cont nou?",
-        content: "Accesând secțiunea 'Sign in'. Te poți conecta fie prind mail, fie folosind contul Google."
+        content: "Accesând secţiunea 'Sign in'. Te poţi conecta fie prind creandu-ti un cont nou, fie folosind contul Google."
       },
       {
         title: "Cum mă înrolez la un curs?",

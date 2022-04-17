@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { useState, useEffect, useRef } from "react";
 import { flushSync } from "react-dom";
-import '../styles/quiz.css'
+import '../../styles/quiz.css'
 
 const Question = ({ question, totalQuestions, currentQuestion, setAnswer }) => {
     const [selectedOption, setSelectedOption] = useState(null);
@@ -44,7 +44,7 @@ const Question = ({ question, totalQuestions, currentQuestion, setAnswer }) => {
                     {
                         question.options.map((option, index) => {
                             return (
-                                <div 
+                                <div
                                     className={index == selectedOption ? "option active" : "option"}
                                     key={index}
                                     onClick={() => setSelectedOption(index)}
@@ -62,5 +62,5 @@ const Question = ({ question, totalQuestions, currentQuestion, setAnswer }) => {
         </div>
     );
 }
- 
+
 export default Question;

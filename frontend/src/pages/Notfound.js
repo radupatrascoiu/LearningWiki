@@ -7,19 +7,19 @@ const NotFound = () => {
         <div className="container">
             <div className="not-found">
                 <Typography
-                variant="h2"
-                color="textPrimary"
-                align="center"
-                marginTop="100px"
+                    variant="h2"
+                    color="textPrimary"
+                    align="center"
+                    marginTop="100px"
                 >
                     Sorry
                 </Typography>
 
                 <Typography
-                variant="h4"
-                color="textSecondary"
-                align="center"
-                marginBottom="20px"
+                    variant="h4"
+                    color="textSecondary"
+                    align="center"
+                    marginBottom="20px"
                 >
                     The page cannot be found
                 </Typography>
@@ -28,5 +28,5 @@ const NotFound = () => {
         </div>
     );
 }
- 
+
 export default NotFound;

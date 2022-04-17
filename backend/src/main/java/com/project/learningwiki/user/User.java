@@ -1,5 +1,6 @@
 package com.project.learningwiki.user;
 
+import com.project.learningwiki.progress.Progress;
 import com.project.learningwiki.solved_test.SolvedTest;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -23,8 +24,10 @@ public class User {
     private String name;
     private String email;
     private String role;
-    @OneToMany(mappedBy = "user")
+    @OneToMany
     private List<SolvedTest> solvedTestList = new ArrayList<>();
+    @OneToMany
+    private List<Progress> progresses;
 
     @Override
     public String toString() {

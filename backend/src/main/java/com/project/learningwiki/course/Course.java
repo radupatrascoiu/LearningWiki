@@ -1,10 +1,13 @@
 package com.project.learningwiki.course;
 
 import com.project.learningwiki.progress.Progress;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Setter
@@ -20,9 +23,8 @@ public class Course {
     private String name;
 
 //    private Integer professorId;
-    @OneToOne(mappedBy = "course", cascade = CascadeType.ALL)
-//    @JoinColumn(name = "PROGRESS_ID", referencedColumnName = "ID")
-    private Progress progress;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Progress> progress;
     private String infos;
     private String requirements;
     private String photo;

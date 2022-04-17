@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import '../styles/quiz.css'
+import '../../styles/quiz.css'
 
 const QuizResult = ({ result, retry }) => {
     return (
@@ -10,5 +10,5 @@ const QuizResult = ({ result, retry }) => {
         </div>
     );
 }
- 
+
 export default QuizResult;

@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import '../styles/quiz.css'
+import '../../styles/quiz.css'
 
 const JoinScreen = ({ start }) => {
     return (
@@ -10,5 +10,5 @@ const JoinScreen = ({ start }) => {
         </div>
     )
 }
- 
+
 export default JoinScreen;

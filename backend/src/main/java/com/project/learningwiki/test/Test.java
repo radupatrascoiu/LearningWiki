@@ -20,7 +20,7 @@ public class Test {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToMany(mappedBy = "test")
+    @OneToMany
     private List<Chapter> chapters;
 
     private String content;

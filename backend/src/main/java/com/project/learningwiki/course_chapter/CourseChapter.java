@@ -30,6 +30,12 @@ public class CourseChapter {
 
     private Integer year;
 
+    public CourseChapter(Course course, Chapter chapter, Integer year) {
+        this.course = course;
+        this.chapter = chapter;
+        this.year = year;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

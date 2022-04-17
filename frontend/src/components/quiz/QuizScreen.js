@@ -1,8 +1,8 @@
 import { useState } from "react";
-import QuestionList from "../data/questions.json"
+import QuestionList from "../../data/questions.json"
 import QuizResult from './QuizResult'
 import Question from './Question'
-import '../styles/quiz.css'
+import '../../styles/quiz.css'
 
 const QuizScreen = ({ retry }) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -28,16 +28,16 @@ const QuizScreen = ({ retry }) => {
         <div className="quiz-screen">
             {
                 isQuestionEnd ? (
-                    <QuizResult 
+                    <QuizResult
                         result={calculateResult()}
                         retry={retry}
                     />
                 ) : (
                     <Question
-                        question = { QuestionList[currentQuestionIndex] }
-                        totalQuestions = { QuestionList.length }
-                        currentQuestion = { currentQuestionIndex + 1 }
-                        setAnswer = {(index) => {
+                        question={QuestionList[currentQuestionIndex]}
+                        totalQuestions={QuestionList.length}
+                        currentQuestion={currentQuestionIndex + 1}
+                        setAnswer={(index) => {
                             setMarkedAnswers((arr) => {
                                 let newArr = [...arr];
                                 newArr[currentQuestionIndex - 1] = index;
@@ -51,5 +51,5 @@ const QuizScreen = ({ retry }) => {
         </div>
     );
 }
- 
+
 export default QuizScreen;

@@ -3,7 +3,9 @@ import { config } from '../utils/constants';
 
 export const userApi = {
     getUsers,
-    getCourses
+    getCourses,
+    getCourse,
+    getChapters
 }
 
 function getUsers(token) {
@@ -16,6 +18,22 @@ function getUsers(token) {
 
 function getCourses(token) {
     return instance.get(`/api/courses/`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getCourse(token, courseName) {
+    return instance.get(`/api/courses/${courseName}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getChapters(token, courseName, year) {
+    return instance.get(`/api/courses/${courseName}/materiale/${year}`, {
         headers: {
             'Authorization': bearerAuth(token)
         }

@@ -8,35 +8,36 @@ import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
-    card: {
-      boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
-      backgroundColor: "#fafafa",
-      transition: "transform 0.5s ease-in-out",
-      "&:hover": { transform: "scale3d(1.1, 1.1, 1)" },
-    }
+  card: {
+    boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
+    backgroundColor: "#fafafa",
+    transition: "transform 0.5s ease-in-out",
+    "&:hover": { transform: "scale3d(1.1, 1.1, 1)" },
+    height: "250px"
+  }
 });
 
-const CapitolCard = ({ capitol, handleLearnMore }) => {
-    const classes = useStyles();
+const CapitolCard = ({ chapter, handleLearnMore }) => {
+  const classes = useStyles();
 
   return (
     <div onClick={() => alert("Hello from here")}>
-      <Card 
-      className={classes.card} 
-      elevation={1}
+      <Card
+        className={classes.card}
+        elevation={1}
       >
         <CardHeader
           action={
-            <IconButton onClick={() => handleLearnMore(capitol.link)}>
+            <IconButton onClick={() => handleLearnMore(chapter.link)}>
               <QuestionMarkIcon />
             </IconButton>
           }
-          title={capitol.title}
-          subheader={capitol.category}
+          title={chapter.name}
+          subheader={chapter.description}
         />
         <CardContent>
           <Typography variant="body2" color="textSecondary">
-            { capitol.details }
+            {chapter.details}
           </Typography>
         </CardContent>
       </Card>

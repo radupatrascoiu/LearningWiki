@@ -1,5 +1,4 @@
-import MyCarousel from "./myCarousel";
-import MultiCarouselPage from "./multiCarousePage";
+import MyCarousel from "../components/mentor/MyCarousel";
 import Typography from '@mui/material/Typography';
 import { useEffect, useState } from 'react';
 import { useKeycloak } from '@react-keycloak/web';
@@ -21,17 +20,16 @@ const CautaMentor = () => {
     return (initialized && keycloak?.authenticated &&
         <div className="not-foundsad">
             <Typography
-              color="textPrimary"
-              gutterBottom
-              variant="h4"
-              padding="50px"
+                color="textPrimary"
+                gutterBottom
+                variant="h4"
+                padding="50px"
             >
-            Alegeti mentorul din profesorii de mai jos:
+                Alegeti mentorul din profesorii de mai jos:
             </Typography>
-            <MyCarousel/>
-            {/* <MultiCarouselPage></MultiCarouselPage> */}
+            <MyCarousel />
         </div>
     );
 }
- 
+
 export default CautaMentor;
