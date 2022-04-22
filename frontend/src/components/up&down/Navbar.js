@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,13 +12,19 @@ import { useKeycloak } from '@react-keycloak/web';
 import LoginPage from '../authentication/Login';
 import User from '../authentication/User';
 import Logout from '../authentication/Logout';
-import Avatar from '@mui/material/Avatar';
-import profil from "../../img/profil.jpg"
+import { userApi } from '../../services/userApi';
+import AuthorizedFunction from '../../utils/authorizedFunction';
 
 function Navbar() {
-
+    const [isProfessor, setIsProfessor] = useState(false);
     const { initialized, keycloak } = useKeycloak();
-    const settings = ["Profile", "Singout"]
+
+    useEffect(async () => {
+        if (keycloak && initialized) {
+            setIsProfessor(AuthorizedFunction(keycloak, ['professor']));
+            console.log("Profesor = " + isProfessor);
+        }
+    }, [initialized, keycloak]);
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -48,6 +54,16 @@ function Navbar() {
                                     <Button color="inherit">
                                         <Link to="/chat">Chat</Link>
                                     </Button>}
+                                {initialized && keycloak?.authenticated &&
+                                    <Button color="inherit">
+                                        <Link to="/raporteazaOGreseala">Raporteaza o greseala</Link>
+                                    </Button>
+                                }
+                                {initialized && keycloak?.authenticated &&
+                                    <Button color="inherit">
+                                        <Link to="/greseliRaportate">Greseli Raportate</Link>
+                                    </Button>
+                                }
                             </Typography>
                         </Grid>
                     </Grid>

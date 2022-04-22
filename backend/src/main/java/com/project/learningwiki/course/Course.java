@@ -22,7 +22,6 @@ public class Course {
 
     private String name;
 
-//    private Integer professorId;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Progress> progress;
     private String infos;

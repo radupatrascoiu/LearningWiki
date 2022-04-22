@@ -19,13 +19,16 @@ public class Mentoring {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID")
+    @OneToOne
     private User student;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "PROFESSOR_ID", referencedColumnName = "ID")
+    @ManyToOne
     private User professor;
+
+    public Mentoring(User student, User professor) {
+        this.student = student;
+        this.professor = professor;
+    }
 
     @Override
     public boolean equals(Object o) {

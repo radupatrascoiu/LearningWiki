@@ -15,12 +15,14 @@ import om_invatand from "../img/om-invatand.jpg"
 import bg_materiale from "../img/bg-materiale.jpg"
 import ListItemButton from '@mui/material/ListItemButton';
 import { useKeycloak } from '@react-keycloak/web';
+import { useParams } from "react-router";
 
 import '../styles/materiale.css'
 
 const Materiale = (props) => {
   const [clasa, setClasa] = useState("9");
   const { initialized, keycloak } = useKeycloak();
+  const { courseName } = useParams();
 
   return (initialized && keycloak?.authenticated &&
     <div className='container'>
@@ -86,7 +88,7 @@ const Materiale = (props) => {
           >
             Alege capitolul dorit 📚
           </Typography>
-          <GridCapitole clasa={clasa} />
+          <GridCapitole courseName={courseName} clasa={clasa} />
         </div>
       </div>
     </div>

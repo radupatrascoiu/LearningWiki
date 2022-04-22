@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MentoringRepository extends JpaRepository<Mentoring, Integer> {
+    Mentoring findByStudentId(Integer studentId);
 }

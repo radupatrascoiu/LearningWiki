@@ -7,3 +7,19 @@
 .btn {
     padding: 20px;
 }
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.first-text {
+    padding: 50px;
+    margin-bottom: 100px;
+}
+
+.second-text {
+    margin-top: 400px;
+}

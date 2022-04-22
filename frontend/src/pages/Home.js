@@ -72,6 +72,7 @@ const Home = () => {
 
         <div className="first-part-content">
           <img className='logo2' src={logo} alt="Learning Wiki" />
+
           <Typography
             color="textPrimary"
             gutterBottom

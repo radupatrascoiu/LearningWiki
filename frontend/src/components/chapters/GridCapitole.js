@@ -7,7 +7,7 @@ import { userApi } from '../../services/userApi';
 
 import '../../styles/materiale.css'
 
-const GridCapitole = ({ clasa }) => {
+const GridCapitole = ({ courseName, clasa }) => {
   const { initialized, keycloak } = useKeycloak();
   const [chapters, setChapters] = useState([]);
 
@@ -15,7 +15,7 @@ const GridCapitole = ({ clasa }) => {
   useEffect(async () => {
     if (keycloak && initialized) {
       try {
-        const response = await userApi.getChapters(keycloak.token, "matematica", clasa);
+        const response = await userApi.getChapters(keycloak.token, courseName, clasa);
         // console.log(response.data)
         // const chaptersProjection = await response.data["data"]
         // console.log(chaptersProjection)
@@ -47,7 +47,7 @@ const GridCapitole = ({ clasa }) => {
         <Grid container spacing={3}>
           {chapters.map(chapter => (
             <Grid item xs={12} md={6} lg={4} key={chapter.id}>
-              <CapitolCard chapter={chapter} handleLearnMore={handleLearnMore} />
+              <CapitolCard courseName={courseName} chapter={chapter} handleLearnMore={handleLearnMore} />
             </Grid>
           ))}
         </Grid>

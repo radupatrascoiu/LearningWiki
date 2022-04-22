@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { makeStyles } from "@mui/styles";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   card: {
@@ -17,11 +18,12 @@ const useStyles = makeStyles({
   }
 });
 
-const CapitolCard = ({ chapter, handleLearnMore }) => {
+const CapitolCard = ({ courseName, chapter, handleLearnMore }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return (
-    <div onClick={() => alert("Hello from here")}>
+    <div onClick={() => navigate(`/courses/${courseName}/materiale/${chapter.id}/view`)}>
       <Card
         className={classes.card}
         elevation={1}
