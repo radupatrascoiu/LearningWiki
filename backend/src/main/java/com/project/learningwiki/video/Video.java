@@ -18,9 +18,19 @@ public class Video {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String title;
+    private String name;
+    private Integer year;
+    private String courseName;
     private String description;
     private String link;
+
+    public Video(String name, Integer year, String courseName, String description, String link) {
+        this.name = name;
+        this.year = year;
+        this.courseName = courseName;
+        this.description = description;
+        this.link = link;
+    }
 
     @Override
     public boolean equals(Object o) {

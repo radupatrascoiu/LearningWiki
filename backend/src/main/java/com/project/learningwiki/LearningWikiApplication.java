@@ -22,11 +22,6 @@ public class LearningWikiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		List<User> users = userService.getAllUsers();
-//		if (!users.isEmpty()) {
-//			users.forEach(System.out::println);
-//		}
-
 		util.insertFakeDataInDB();
 	}
 }

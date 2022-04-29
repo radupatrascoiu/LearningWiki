@@ -16,6 +16,9 @@ const ReportedMistakes = () => {
     const { initialized, keycloak } = useKeycloak();
     const [error, setError] = useState(false);
     const [mistakes, setMistakes] = useState(null);
+    const [refreshFlag, setRefreshFlag] = useState(false);
+
+    const refreshComponent = () => setRefreshFlag(!refreshFlag)
 
     useEffect(async () => {
         if (keycloak && initialized) {
@@ -27,11 +30,12 @@ const ReportedMistakes = () => {
                 console.log(error);
             }
         }
-    }, [initialized, keycloak]);
+    }, [initialized, keycloak, refreshFlag]);
 
     const handleDeleteMistake = async (mistakeId) => {
         try {
             const response = await userApi.deleteMistake(keycloak.token, mistakeId);
+            refreshComponent()
         } catch (error) {
             console.log(error);
         }
@@ -50,13 +54,12 @@ const ReportedMistakes = () => {
                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
-                                <TableCell />
-                                <TableCell align="right">Id</TableCell>
-                                <TableCell align="right">Materia</TableCell>
-                                <TableCell align="right">Clasa</TableCell>
-                                <TableCell align="right">Capitolul</TableCell>
-                                <TableCell align="right">Detalii</TableCell>
-                                <TableCell align="right">Actiune</TableCell>
+                                <TableCell align="center">Id</TableCell>
+                                <TableCell align="center">Materia</TableCell>
+                                <TableCell align="center">Clasa</TableCell>
+                                <TableCell align="center">Capitolul</TableCell>
+                                <TableCell align="center">Detalii</TableCell>
+                                <TableCell align="center">Actiune</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -65,12 +68,12 @@ const ReportedMistakes = () => {
                                     key={mistake.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell component="th" scope="row" align="right">{mistake.id}</TableCell>
-                                    <TableCell align="right">{mistake.courseName}</TableCell>
-                                    <TableCell align="right">{mistake.classCourse}</TableCell>
-                                    <TableCell align="right">{mistake.chapter}</TableCell>
-                                    <TableCell align="right">{mistake.details}</TableCell>
-                                    <TableCell align="right">
+                                    <TableCell component="th" scope="row" align="center">{mistake.id}</TableCell>
+                                    <TableCell align="center">{mistake.courseName}</TableCell>
+                                    <TableCell align="center">{mistake.classCourse}</TableCell>
+                                    <TableCell align="center">{mistake.chapter}</TableCell>
+                                    <TableCell align="center">{mistake.details}</TableCell>
+                                    <TableCell align="center">
                                         <Button
                                             variant="contained"
                                             color="success"

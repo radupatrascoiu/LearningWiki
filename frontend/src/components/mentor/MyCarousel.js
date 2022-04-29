@@ -23,6 +23,9 @@ const MyCarousel = () => {
   const { initialized, keycloak } = useKeycloak();
   const [professors, setProfessors] = useState([]);
   const [myMentor, setMyMentor] = useState(null);
+  const [refreshFlag, setRefreshFlag] = useState(false);
+
+  const refreshComponent = () => setRefreshFlag(!refreshFlag)
 
   const handleClickOpen = async (professorId) => {
     console.log("AICIIIIIIIIIIIIIII = " + professorId);
@@ -36,6 +39,7 @@ const MyCarousel = () => {
 
   const handleClose = () => {
     setOpen(false);
+    refreshComponent();
   };
 
   const theme = createTheme({
@@ -84,11 +88,11 @@ const MyCarousel = () => {
         console.log(error);
       }
     }
-  }, [initialized, keycloak]);
+  }, [initialized, keycloak, refreshFlag]);
 
   return (
     <div>
-      <ReactCardCarousel autoplay={false} autoplay_speed={2500}>
+      <ReactCardCarousel autoplay={true} autoplay_speed={2500}>
         {
           professors && professors.map((professor, idx) => (
             <div key={idx} style={CARD_STYLE}>

@@ -1,0 +1,23 @@
+.chapters {
+    display: flex;
+    justify-content: center;
+    /* background-image: url(../img/bg-materiale.jpg);
+    background-repeat: 'no-repeat'; */
+}
+
+.sidebar {
+    background-color: white;
+    margin-top: 10px;
+    height: 100%;
+    width: 15%;
+}
+
+.test-selection {
+    margin-top: 50px;
+    margin-left: 45px;
+}
+
+.om-invatand {
+    padding-top: 10px;
+    height: 450px;
+}

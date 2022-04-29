@@ -1,6 +1,7 @@
 package com.project.learningwiki.test;
 
 import com.project.learningwiki.chapter.Chapter;
+import com.project.learningwiki.question.Question;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -20,10 +21,25 @@ public class Test {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    private String name;
+
+    private Integer year;
+
+    private String courseName;
+
     @OneToMany
     private List<Chapter> chapters;
 
-    private String content;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<Question> questions;
+
+    public Test(String name, Integer year, String courseName, List<Chapter> chapters, List<Question> questions) {
+        this.name = name;
+        this.year = year;
+        this.courseName = courseName;
+        this.chapters = chapters;
+        this.questions = questions;
+    }
 
     @Override
     public boolean equals(Object o) {

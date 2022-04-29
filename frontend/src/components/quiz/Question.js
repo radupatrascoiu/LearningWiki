@@ -1,9 +1,11 @@
 import { Button } from "@mui/material";
 import { useState, useEffect, useRef } from "react";
 import { flushSync } from "react-dom";
+import MDEditor from '@uiw/react-md-editor';
+import MarkdownEditor from '@uiw/react-markdown-editor';
 import '../../styles/quiz.css'
 
-const Question = ({ question, totalQuestions, currentQuestion, setAnswer }) => {
+const Question = ({ question, totalQuestions, currentQuestion, setAnswer, test }) => {
     const [selectedOption, setSelectedOption] = useState(null);
     const timer = useRef(null);
     const progressBar = useRef(null);
@@ -18,7 +20,7 @@ const Question = ({ question, totalQuestions, currentQuestion, setAnswer }) => {
         setSelectedOption(null);
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         progressBar.current.classList.remove("active");
         setTimeout(() => {
             progressBar.current.classList.add("active");
@@ -38,18 +40,21 @@ const Question = ({ question, totalQuestions, currentQuestion, setAnswer }) => {
             <div className="main">
                 <div className="title">
                     <span>Intrebare:</span>
-                    <p>{question.title}</p>
+                    {/* <p>{question.title}</p> */}
+                    {/* <MDEditor.Markdown source={question.title} /> */}
+                    <td dangerouslySetInnerHTML={{ __html: question.title }} />
                 </div>
                 <div className="options">
                     {
-                        question.options.map((option, index) => {
+                        question.answers.map((answer, index) => {
                             return (
                                 <div
                                     className={index == selectedOption ? "option active" : "option"}
                                     key={index}
                                     onClick={() => setSelectedOption(index)}
                                 >
-                                    {option}
+                                    {/* <MDEditor.Markdown source={answer.content} /> */}
+                                    <td dangerouslySetInnerHTML={{ __html: answer.content }} />
                                 </div>
                             );
                         })

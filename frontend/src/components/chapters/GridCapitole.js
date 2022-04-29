@@ -11,29 +11,16 @@ const GridCapitole = ({ courseName, clasa }) => {
   const { initialized, keycloak } = useKeycloak();
   const [chapters, setChapters] = useState([]);
 
-  // Load data on mount 
   useEffect(async () => {
     if (keycloak && initialized) {
       try {
         const response = await userApi.getChapters(keycloak.token, courseName, clasa);
-        // console.log(response.data)
-        // const chaptersProjection = await response.data["data"]
-        // console.log(chaptersProjection)
         setChapters(response.data)
       } catch (error) {
         console.log(error);
       }
     }
   }, [initialized, keycloak, clasa]);
-
-
-  //   const handleDelete = async (id) => {
-  //     await fetch('http://localhost:8000/notes/' + id, {
-  //       method: 'DELETE'
-  //     })
-  //     const newNotes = notes.filter(note => note.id != id)
-  //     setNotes(newNotes)
-  //   }
 
   const handleLearnMore = (link) => {
 

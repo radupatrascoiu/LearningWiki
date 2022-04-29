@@ -1,6 +1,5 @@
 package com.project.learningwiki.chapter;
 
-import com.project.learningwiki.test.Test;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -23,15 +22,22 @@ public class Chapter {
     private String description;
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "TEST_ID")
-    private Test test;
+//    @ManyToOne
+//    @JoinColumn(name = "TEST_ID")
+//    private Test test;
 
-    public Chapter(String name, String description, String content, Test test) {
+//    public Chapter(String name, String description, String content, Test test) {
+//        this.name = name;
+//        this.description = description;
+//        this.content = content;
+//        this.test = test;
+//    }
+
+
+    public Chapter(String name, String description, String content) {
         this.name = name;
         this.description = description;
         this.content = content;
-        this.test = test;
     }
 
     @Override

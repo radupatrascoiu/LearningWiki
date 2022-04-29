@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Card from '@mui/material/Card'
-import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { makeStyles } from "@mui/styles";
+import '../../styles/videoclipuri.css'
+
+import Box from '@mui/material/Box';
+import { useNavigate } from "react-router-dom";
+import CardMedia from '@mui/material/CardMedia';
+import { useTheme } from '@mui/material/styles';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
 
 const useStyles = makeStyles({
     card: {
@@ -16,29 +23,47 @@ const useStyles = makeStyles({
     }
 });
 
-const VideoCard = () => {
+const VideoCard = ({ courseName, video }) => {
     const classes = useStyles();
+    const theme = useTheme();
+    const navigate = useNavigate();
 
     return (
-        <div onClick={() => alert("Hello from here")}>
+        <div onClick={() => navigate(`/courses/${courseName}/videoclipuri/${video.id}`)}>
             <Card
+                sx={{ display: 'flex' }}
                 className={classes.card}
                 elevation={1}
             >
-                <CardHeader
-                    action={
-                        <IconButton>
-                            <QuestionMarkIcon />
+
+                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <CardContent sx={{ flex: '1 0 auto' }}>
+                        <Typography component="div" variant="h5">
+                            {video.name}
+                        </Typography>
+                        <Typography variant="subtitle1" color="text.secondary" component="div">
+                            {video.description}
+                        </Typography>
+                    </CardContent>
+
+                    <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+                        <IconButton aria-label="previous">
+                            {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
                         </IconButton>
-                    }
-                    title="Video 1"
-                    subheader="Functii"
+                        <IconButton aria-label="play/pause">
+                            <PlayArrowIcon sx={{ height: 38, width: 38 }} />
+                        </IconButton>
+                        <IconButton aria-label="next">
+                            {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
+                        </IconButton>
+                    </Box>
+                </Box>
+
+                <CardMedia
+                    component="img"
+                    image="https://static.tildacdn.com/tild6637-3561-4939-a430-346531313335/how-to-upload-a-vide.jpg"
+                    alt="Live from space album cover"
                 />
-                <CardContent>
-                    <Typography variant="body2" color="textSecondary">
-                        "Bla bla bla"
-                    </Typography>
-                </CardContent>
             </Card>
         </div>
     )

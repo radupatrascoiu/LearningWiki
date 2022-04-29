@@ -9,7 +9,8 @@ import Course from './pages/Course';
 import FooterComponent from './components/up&down/Footer';
 import Chat from './pages/Chat';
 import Materiale from './pages/Materiale';
-import Teste from './pages/Teste';
+import Tests from './pages/Tests';
+import Test from './pages/Test';
 import Videoclipuri from './pages/Videoclipuri';
 import { withHooksKC } from './utils/withHooksKC';
 import ReportAMistake from './pages/ReportAMistake';
@@ -30,7 +31,8 @@ function App() {
             <Route exact path='/courses' element={<Courses />} />
             <Route exact path='/courses/:courseName' element={<Course />} />
             <Route exact path='/courses/:courseName/materiale' element={<Materiale />} />
-            <Route exact path='/courses/:courseName/teste' element={<Teste />} />
+            <Route exact path='/courses/:courseName/teste/:testId' element={<Test />} />
+            <Route exact path='/courses/:courseName/teste' element={<Tests />} />
             <Route exact path='/courses/:courseName/videoclipuri' element={<Videoclipuri />} />
             <Route exact path='/courses/:courseName/videoclipuri/:videoId' element={<VideoPage />} />
             <Route exact path='/cautaMentor' element={<CautaMentor />} />

@@ -18,7 +18,7 @@ import { useKeycloak } from '@react-keycloak/web';
 const ReportAMistakeForm = () => {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
-    const [materie, setMaterie] = useState("matematica");
+    const [materie, setMaterie] = useState("Matematica");
     const [clasa, setClasa] = useState(9);
     const [capitol, setCapitol] = useState("");
     const [detalii, setDetalii] = useState("");
@@ -88,8 +88,8 @@ const ReportAMistakeForm = () => {
                                     onChange={handleChangeMaterie}
                                     required={true}
                                 >
-                                    <MenuItem value={"matematica"}>Matematica</MenuItem>
-                                    <MenuItem value={"informatica"}>Informatica</MenuItem>
+                                    <MenuItem value={"Matematica"}>Matematica</MenuItem>
+                                    <MenuItem value={"Informatica"}>Informatica</MenuItem>
                                 </Select>
                             </FormControl>
 

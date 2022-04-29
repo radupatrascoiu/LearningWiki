@@ -1,16 +1,22 @@
-import { useState } from "react";
-import QuestionList from "../../data/questions.json"
+import React, { useEffect, useState } from 'react'
 import QuizResult from './QuizResult'
 import Question from './Question'
+import { useKeycloak } from '@react-keycloak/web';
 import '../../styles/quiz.css'
 
-const QuizScreen = ({ retry }) => {
+const QuizScreen = ({ retry, test }) => {
+    const { initialized, keycloak } = useKeycloak();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const QuestionList = test.questions;
     const [markedAnswers, setMarkedAnswers] = useState(new Array(QuestionList.length));
     const isQuestionEnd = currentQuestionIndex === QuestionList.length;
 
+    console.log(QuestionList.length);
+    console.log("Current = " + currentQuestionIndex);
+
     const calculateResult = () => {
         let correct = 0;
+        console.log("RASPUNSURI: " + markedAnswers);
         QuestionList.forEach((question, index) => {
             if (question.correctOptionIndex == markedAnswers[index]) {
                 correct++;
@@ -45,6 +51,7 @@ const QuizScreen = ({ retry }) => {
                             });
                             setCurrentQuestionIndex(currentQuestionIndex + 1);
                         }}
+                        test={test}
                     />
                 )
             }

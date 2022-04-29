@@ -13,7 +13,11 @@ export const userApi = {
     getMyMentor,
     reportAMistake,
     getMistakes,
-    deleteMistake
+    deleteMistake,
+    getTests,
+    getTest,
+    getVideos,
+    getVideo
 }
 
 function getUsers(token) {
@@ -116,6 +120,38 @@ function getMistakes(token) {
 
 function deleteMistake(token, mistakeId) {
     return instance.delete(`/api/mistakes/delete/${mistakeId}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getTests(token, courseName, year) {
+    return instance.get(`/api/tests/${courseName}/${year}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getTest(token, testId) {
+    return instance.get(`/api/tests/${testId}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getVideos(token, courseName, year) {
+    return instance.get(`/api/videos/${courseName}/${year}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getVideo(token, videoId) {
+    return instance.get(`/api/videos/${videoId}`, {
         headers: {
             'Authorization': bearerAuth(token)
         }
