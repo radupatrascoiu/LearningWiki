@@ -55,6 +55,7 @@ public class Util {
         questionRepository.deleteAll();
         answerRepository.deleteAll();
         videoRepository.deleteAll();
+        chapterRepository.deleteAll();
 
         Course matematica = courseRepository.save(new Course("matematica", "Materiale utile pentru clasele 9-12", "Matematica primara, clasele 5-8", "../img/matematica-logo.jpg"));
         Course informatica = courseRepository.save(new Course("informatica", "Materiale utile pentru clasele 9-12", "Operatii simple de matematica, logica", "../img/informatica-logo.jpg"));
@@ -215,9 +216,17 @@ public class Util {
         questionRepository.save(question4);
 
         testRepository.save(new Test("Test 1", 9, "matematica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
-//        testRepository.save(new Test("Test 2", 9, "matematica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
-//        testRepository.save(new Test("Test 3", 9, "matematica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
-//        testRepository.save(new Test("Test 1", 9, "informatica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
+        testRepository.save(new Test("Test 2", 9, "matematica", List.of(chapter1), List.of(question1, question2, question3, question4)));
+        testRepository.save(new Test("Test 3", 9, "matematica", List.of(chapter1, chapter5), List.of(question1, question2, question3, question4)));
+        testRepository.save(new Test("Test 4", 10, "matematica", List.of(chapter2, chapter3, chapter4), List.of(question1, question2, question3, question4)));
+        testRepository.save(new Test("Test 5", 10, "matematica", List.of(chapter2, chapter3, chapter4), List.of(question1, question2, question3, question4)));
+        testRepository.save(new Test("Test 6", 10, "matematica", List.of(chapter2, chapter3, chapter4), List.of(question1, question2, question3, question4)));
+        testRepository.save(new Test("Test 7", 11, "matematica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
+        testRepository.save(new Test("Test 8", 12, "matematica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
+        testRepository.save(new Test("Test 9", 12, "matematica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
+        testRepository.save(new Test("Test 1", 9, "informatica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
+        testRepository.save(new Test("Test 2", 9, "informatica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
+        testRepository.save(new Test("Test 3", 9, "informatica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
 
 
         Video video1 = new Video("Siruri", 9, "matematica", "Modalitati de a defini un sir, siruri marginite, siruri monotone", "https://www.youtube.com/watch?v=ysz5S6PUM-U");

@@ -18,7 +18,7 @@ import java.util.Objects;
 @Table(name = "tests")
 public class Test {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
@@ -27,7 +27,7 @@ public class Test {
 
     private String courseName;
 
-    @OneToMany
+    @ManyToMany
     private List<Chapter> chapters;
 
     @ManyToMany(cascade = CascadeType.MERGE)

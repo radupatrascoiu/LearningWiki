@@ -15,7 +15,7 @@ import java.util.Objects;
 @Table(name = "chapters")
 public class Chapter {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;

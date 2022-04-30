@@ -44,9 +44,6 @@ import SchoolIcon from '@mui/icons-material/School';
 import { capitalizeFirstLetter } from '../utils/util';
 
 const Course = () => {
-  const navigate = useNavigate();
-  const { courseName } = useParams()
-
   const StyledMenu = styled((props) => (
     <Menu
       elevation={0}
@@ -101,12 +98,25 @@ const Course = () => {
   const [error, setError] = useState(false);
   const { initialized, keycloak } = useKeycloak();
 
+  const navigate = useNavigate();
+  const { courseName } = useParams();
+  const [myMentor, setMyMentor] = useState(null);
+
   useEffect(async () => {
     if (keycloak && initialized) {
       try {
         const response = await userApi.getCourse(keycloak?.token, courseName);
         console.log("CURSUL: " + response.data)
         setCourse(response.data);
+
+        const response2 = await userApi.getMyMentor(keycloak?.token);
+        console.log("MyMentor = " + response2.data.name)
+        if (response2?.data !== null && response2?.data !== undefined && response2?.data != '') {
+          setMyMentor(response2.data);
+        }
+
+        console.log("AICI |" + myMentor + "|");
+
       } catch (error) {
         setError(true);
       }
@@ -123,24 +133,24 @@ const Course = () => {
               <Table sx={{ minWidth: "50%" }} aria-label="spanning table">
                 <TableBody>
                   <TableRow key={1 + "professor"}>
-                    <TableCell>Professor 🙍</TableCell>
-                    <TableCell className="sizedText" align="center">Profesorul care a scris cursul</TableCell>
+                    <TableCell>Mentorul meu 🙍</TableCell>
+                    <TableCell className="sizedText" style={{ fontWeight: "bold" }} align="center">{myMentor?.name}</TableCell>
                   </TableRow>
                   <TableRow key={1 + "credits"}>
-                    <TableCell>Progress 💰</TableCell>
-                    <TableCell className="sizedText" align="center">0/100 teste</TableCell>
+                    <TableCell>Progresul meu 💰</TableCell>
+                    <TableCell className="sizedText" style={{ fontWeight: "bold" }} align="center">0/100 teste</TableCell>
                   </TableRow>
                   <TableRow key={1 + "infos"}>
-                    <TableCell>Infos ℹ️</TableCell>
+                    <TableCell>Informatii ℹ️</TableCell>
                     <TableCell align="center" sx={{ width: "50%" }}>
-                      <Typography className="sizedText" fontSize="13px">{course.infos}</Typography>
+                      <Typography className="sizedText" fontSize="13px">{course?.infos}</Typography>
 
                     </TableCell>
                   </TableRow>
                   <TableRow key={1 + "requirements"}>
-                    <TableCell>Requirements ⚔️</TableCell>
+                    <TableCell>Cerinte minime ⚔️</TableCell>
                     <TableCell align="center" sx={{ width: "50%" }}>
-                      <Typography className="sizedText" fontSize="13px">{course.requirements}</Typography>
+                      <Typography className="sizedText" fontSize="13px">{course?.requirements}</Typography>
                     </TableCell>
                   </TableRow>
                 </TableBody>
