@@ -101,6 +101,8 @@ const Course = () => {
   const navigate = useNavigate();
   const { courseName } = useParams();
   const [myMentor, setMyMentor] = useState(null);
+  const [tests, setTests] = useState([]);
+  const [solvedTests, setSolvedTests] = useState([]);
 
   useEffect(async () => {
     if (keycloak && initialized) {
@@ -116,6 +118,18 @@ const Course = () => {
         }
 
         console.log("AICI |" + myMentor + "|");
+
+        const response3 = await userApi.getAllTestsByCourseName(keycloak.token, courseName);
+        console.log("response3 = " + response3?.data);
+        if (response3?.data !== null && response3?.data !== undefined && response3?.data != '') {
+          setTests(response3.data);
+        }
+
+        const response4 = await userApi.getSolvedTestsByUserEmailAndCourseName(keycloak.token, keycloak.userInfo?.email, courseName);
+        console.log("QQQQQQQQQQQQQQQQQQ " + response4?.data);
+        if (response4?.data !== null && response4?.data !== undefined && response4?.data != '') {
+          setSolvedTests(response4.data);
+        }
 
       } catch (error) {
         setError(true);
@@ -138,7 +152,7 @@ const Course = () => {
                   </TableRow>
                   <TableRow key={1 + "credits"}>
                     <TableCell>Progresul meu 💰</TableCell>
-                    <TableCell className="sizedText" style={{ fontWeight: "bold" }} align="center">0/100 teste</TableCell>
+                    <TableCell className="sizedText" style={{ fontWeight: "bold" }} align="center">{solvedTests.length}/{tests.length} teste</TableCell>
                   </TableRow>
                   <TableRow key={1 + "infos"}>
                     <TableCell>Informatii ℹ️</TableCell>

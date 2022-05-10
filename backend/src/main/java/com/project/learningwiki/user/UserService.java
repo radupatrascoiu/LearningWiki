@@ -25,7 +25,7 @@ public class UserService {
     }
 
     public List<User> getAllProfessors() {
-        return userRepository.findAll().stream().filter(user -> user.getRole().equals("[ROLE_professor]")).collect(Collectors.toList());
+        return userRepository.findAll().stream().filter(user -> user.getRole().equals("[ROLE_student, ROLE_professor]")).collect(Collectors.toList());
     }
 
     public User getRequestUser(HttpServletRequest request) {
@@ -36,6 +36,10 @@ public class UserService {
 
     public User findUserById(Integer id) {
         return userRepository.findById(id).orElse(null);
+    }
+
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     public User getMyMentor(HttpServletRequest request) {

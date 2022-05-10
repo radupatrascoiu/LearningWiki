@@ -83,8 +83,26 @@
     color: #fff;
 }
 
+.quiz-screen .question .main .options .option.correct {
+    background: #51cb21;
+    color: #fff;
+}
+
+.quiz-screen .question .main .options .option.wrong {
+    background: #d70f0f;
+    color: #fff;
+}
+
 .quiz-screen .question .control {
     padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid #eee;
+}
+
+.arrows {
+    padding: 10px 140px;
     display: flex;
     justify-content: flex-end;
     align-items: center;

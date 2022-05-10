@@ -5,7 +5,6 @@ import com.project.learningwiki.solved_test.SolvedTest;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -15,7 +14,7 @@ public class UserDto {
     private String name;
     private String email;
     private String role;
-    private List<SolvedTest> solvedTestList = new ArrayList<>();
+    private List<SolvedTest> solvedTestList;
     private List<Progress> progresses;
 
     public UserDto(User user) {

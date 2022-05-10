@@ -14,10 +14,29 @@ import User from '../authentication/User';
 import Logout from '../authentication/Logout';
 import { userApi } from '../../services/userApi';
 import AuthorizedFunction from '../../utils/authorizedFunction';
+import IconButton from '@mui/material/IconButton';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 function Navbar() {
     const [isProfessor, setIsProfessor] = useState(false);
     const { initialized, keycloak } = useKeycloak();
+
+    const [auth, setAuth] = React.useState(true);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleChange = (event) => {
+        setAuth(event.target.checked);
+    };
+
+    const handleMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     useEffect(async () => {
         if (keycloak && initialized) {
@@ -52,6 +71,10 @@ function Navbar() {
                                     </Button>}
                                 {initialized && keycloak?.authenticated &&
                                     <Button color="inherit">
+                                        <Link to="/feedback">Feedback</Link>
+                                    </Button>}
+                                {initialized && keycloak?.authenticated &&
+                                    <Button color="inherit">
                                         <Link to="/chat">Chat</Link>
                                     </Button>}
                                 {initialized && keycloak?.authenticated &&
@@ -70,15 +93,46 @@ function Navbar() {
                     <Grid className="rightGrid">
                         {initialized && keycloak?.authenticated ?
                             <div style={{ display: 'inline-block' }}>
-                                {/* <Avatar src={profil} /> */}
-                                <User keycloak={keycloak} />
-                                <Logout keycloak={keycloak} />
-                            </div> : <LoginPage></LoginPage>
+                                <div>
+                                    <IconButton
+                                        size="large"
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        onClick={handleMenu}
+                                        color="inherit"
+                                    >
+                                        <AccountCircle />
+                                    </IconButton>
+                                    <Menu
+                                        id="menu-appbar"
+                                        anchorEl={anchorEl}
+                                        anchorOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        keepMounted
+                                        transformOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        open={Boolean(anchorEl)}
+                                        onClose={handleClose}
+                                    >
+                                        <MenuItem onClick={handleClose}><User keycloak={keycloak} /></MenuItem>
+                                        <MenuItem onClick={handleClose}><Logout keycloak={keycloak} /></MenuItem>
+                                    </Menu>
+                                </div>
+
+                            </div>
+                            : <LoginPage></LoginPage>
                         }
                     </Grid>
+
+
                 </Toolbar>
-            </AppBar>
-        </Box>
+            </AppBar >
+        </Box >
     );
 }
 export default Navbar;

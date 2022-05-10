@@ -8,10 +8,13 @@ import com.project.learningwiki.course.Course;
 import com.project.learningwiki.course.CourseRepository;
 import com.project.learningwiki.course_chapter.CourseChapter;
 import com.project.learningwiki.course_chapter.CourseChapterRepository;
+import com.project.learningwiki.marked_answer.MarkedAnswerRepository;
+import com.project.learningwiki.mentoring.MentoringRepository;
 import com.project.learningwiki.progress.Progress;
 import com.project.learningwiki.progress.ProgressRepository;
 import com.project.learningwiki.question.Question;
 import com.project.learningwiki.question.QuestionRepository;
+import com.project.learningwiki.solved_test.SolvedTestRepository;
 import com.project.learningwiki.test.Test;
 import com.project.learningwiki.test.TestRepository;
 import com.project.learningwiki.user.User;
@@ -43,6 +46,12 @@ public class Util {
     private AnswerRepository answerRepository;
     @Autowired
     private VideoRepository videoRepository;
+    @Autowired
+    private SolvedTestRepository solvedTestRepository;
+    @Autowired
+    private MarkedAnswerRepository markedAnswerRepository;
+    @Autowired
+    private MentoringRepository mentoringRepository;
 
     public void insertFakeDataInDB() {
 
@@ -51,7 +60,10 @@ public class Util {
         progressRepository.deleteAll();
         courseRepository.deleteAll();
         progressRepository.deleteAll();
+        solvedTestRepository.deleteAll();
+        mentoringRepository.deleteAll();
         testRepository.deleteAll();
+        markedAnswerRepository.deleteAll();
         questionRepository.deleteAll();
         answerRepository.deleteAll();
         videoRepository.deleteAll();
@@ -205,10 +217,10 @@ public class Util {
         List<Answer> answers3 = List.of(answer9, answer10, answer11, answer12);
         List<Answer> answers4 = List.of(answer13, answer14, answer15, answer16);
 
-        Question question1 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\"></a>", answers1, 0);
-        Question question2 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\"></a>", answers2, 0);
-        Question question3 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\"></a>", answers3, 0);
-        Question question4 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\"></a>", answers4, 0);
+        Question question1 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\"></a>", answers1, chapter1, 0);
+        Question question2 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\"></a>", answers2, chapter2, 0);
+        Question question3 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\"></a>", answers3, chapter3, 0);
+        Question question4 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\"></a>", answers4, chapter1, 0);
 
         questionRepository.save(question1);
         questionRepository.save(question2);

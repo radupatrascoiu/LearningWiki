@@ -1,7 +1,6 @@
 package com.project.learningwiki.feedback_mentoring;
 
-import com.project.learningwiki.course.Course;
-import com.project.learningwiki.feedback.Feedback;
+import com.project.learningwiki.solved_test.SolvedTest;
 import com.project.learningwiki.user.User;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -21,21 +20,24 @@ public class FeedbackMentoring {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "FEEDBACK_ID", referencedColumnName = "ID")
-    private Feedback feedback;
+    @Column(columnDefinition="TEXT")
+    private String content;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "MENTOR_ID", referencedColumnName = "ID")
+    @OneToOne
     private User mentor;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "STUDENT_ID", referencedColumnName = "ID")
+    @OneToOne
     private User student;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID")
-    private Course course;
+    @ManyToOne
+    private SolvedTest solvedTest;
+
+    public FeedbackMentoring(String content, User mentor, User student, SolvedTest solvedTest) {
+        this.content = content;
+        this.mentor = mentor;
+        this.student = student;
+        this.solvedTest = solvedTest;
+    }
 
     @Override
     public boolean equals(Object o) {

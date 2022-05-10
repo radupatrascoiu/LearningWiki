@@ -17,7 +17,15 @@ export const userApi = {
     getTests,
     getTest,
     getVideos,
-    getVideo
+    getVideo,
+    addSolvedTest,
+    getAllTestsByCourseName,
+    getSolvedTestsByUserEmailAndCourseName,
+    getSolvedTestByTestIdAndUserEmail,
+    getMyStudents,
+    getSolvedTestById,
+    sendFeedback,
+    getFeedbacksByUserId
 }
 
 function getUsers(token) {
@@ -158,8 +166,78 @@ function getVideo(token, videoId) {
     })
 }
 
+function addSolvedTest(token, userEmail, testId, score, markedAnswers) {
+    return instance.post(`/api/solved_tests/add`, {
+        userEmail: userEmail,
+        testId: testId,
+        score: score,
+        markedAnswers: markedAnswers
+    }, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getAllTestsByCourseName(token, courseName) {
+    return instance.get(`/api/tests/by_course/${courseName}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getSolvedTestsByUserEmailAndCourseName(token, userEmail, courseName) {
+    return instance.get(`/api/solved_tests/by_course/${userEmail}/${courseName}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getSolvedTestByTestIdAndUserEmail(token, testId, userEmail) {
+    return instance.get(`/api/solved_tests/${testId}/${userEmail}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getSolvedTestById(token, solvedTestId) {
+    return instance.get(`/api/solved_tests/${solvedTestId}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getMyStudents(token) {
+    return instance.get(`/api/mentoring/my_students`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function sendFeedback(token, content, userId, solvedTestId) {
+    return instance.post(`/api/feedback_mentoring/add/${content}/${userId}/${solvedTestId}`, "", {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getFeedbacksByUserId(token, userId) {
+    return instance.get(`/api/feedback_mentoring/by_userId/${userId}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
 const instance = axios.create({
     baseURL: config.API_URL
+
 })
 
 instance.interceptors.response.use(response => {

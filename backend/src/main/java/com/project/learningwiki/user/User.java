@@ -24,9 +24,9 @@ public class User {
     private String name;
     private String email;
     private String role;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<SolvedTest> solvedTestList = new ArrayList<>();
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Progress> progresses;
 
     @Override

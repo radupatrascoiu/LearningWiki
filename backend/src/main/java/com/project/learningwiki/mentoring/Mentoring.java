@@ -19,10 +19,10 @@ public class Mentoring {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private User student;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private User professor;
 
     public Mentoring(User student, User professor) {

@@ -21,4 +21,12 @@ public class TestService {
         Optional<Test> testOptional = testRepository.findById(testId);
         return testOptional.orElse(null);
     }
+
+    public List<Test> getAllTests() {
+        return testRepository.findAll();
+    }
+
+    public List<Test> getAllTestsByCourseName(String courseName) {
+        return testRepository.findByCourseName(courseName);
+    }
 }

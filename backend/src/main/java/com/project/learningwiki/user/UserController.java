@@ -23,13 +23,13 @@ public class UserController {
 
     @GetMapping("/users")
     @PreAuthorize("isAuthenticated()")
-    public String getAllUsers(HttpServletRequest httpServletRequest) {
+    public String getAllUsers() {
         return userService.getAllUsers().toString();
     }
 
     @GetMapping("/users/professors")
     @PreAuthorize("isAuthenticated()")
-    public List<UserDto> getAllProfessors(HttpServletRequest httpServletRequest) {
+    public List<UserDto> getAllProfessors() {
         return userService.getAllProfessors().stream().map(UserDto::new).collect(Collectors.toList());
     }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import QuizResult from './QuizResult'
 import Question from './Question'
 import { useKeycloak } from '@react-keycloak/web';
+import { userApi } from '../../services/userApi';
 import '../../styles/quiz.css'
 
 const QuizScreen = ({ retry, test }) => {
@@ -37,6 +38,8 @@ const QuizScreen = ({ retry, test }) => {
                     <QuizResult
                         result={calculateResult()}
                         retry={retry}
+                        test={test}
+                        markedAnswers={markedAnswers}
                     />
                 ) : (
                     <Question

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { withRouter } from 'react-router-dom'
 import { Button } from '@mui/material'
 import { useKeycloak } from '@react-keycloak/web'
 
@@ -12,7 +11,7 @@ const Logout = () => {
     }
 
     return (
-        <Button color="inherit" onClick={logout}>Logout</Button>
+        <Button variant="contained" color="error" onClick={logout}>Logout</Button>
     );
 }
 export default Logout;

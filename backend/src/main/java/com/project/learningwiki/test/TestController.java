@@ -23,7 +23,31 @@ public class TestController {
 
         if (tests == null) {
             return ResponseEntity.badRequest()
-                    .body(new ResponseDto("This course does not exists.", false));
+                    .body(new ResponseDto("This course or year does not exists.", false));
+        }
+        return ResponseEntity.ok(tests);
+    }
+
+    @GetMapping()
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> getAllTests() {
+        var tests = testService.getAllTests();
+
+        if (tests == null) {
+            return ResponseEntity.badRequest()
+                    .body(new ResponseDto("There are no tests", false));
+        }
+        return ResponseEntity.ok(tests);
+    }
+
+    @GetMapping("/by_course/{courseName}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> getAllTestsByCourseName(@PathVariable String courseName) {
+        var tests = testService.getAllTestsByCourseName(courseName);
+
+        if (tests == null) {
+            return ResponseEntity.badRequest()
+                    .body(new ResponseDto("There are no tests", false));
         }
         return ResponseEntity.ok(tests);
     }

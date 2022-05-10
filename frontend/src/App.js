@@ -19,6 +19,9 @@ import EditChapterContent from './pages/EditChapterContent';
 import ReportAMistakeForm from './pages/ReportAMistakeForm';
 import ReportedMistakes from './pages/ReportedMistakes';
 import VideoPage from './pages/VideoPage';
+import Feedback from './pages/Feedback';
+import TestFeedback from './pages/TestFeedback';
+import FeedbackForm from './pages/FeedbackForm';
 
 function App() {
   return (
@@ -42,6 +45,10 @@ function App() {
             <Route exact path='/greseliRaportate' element={<ReportedMistakes />} />
             <Route exact path='/courses/:courseName/materiale/:chapterId/view' element={<ChapterContent />} />
             <Route exact path='/courses/:courseName/materiale/:chapterId/edit' element={<EditChapterContent />} />
+            <Route exact path='/feedback' element={<Feedback />} />
+            <Route exact path='/feedback/:solvedTestId' element={<TestFeedback />} />
+            <Route exact path='/feedback/:userId/:solvedTestId' element={<FeedbackForm />} />
+            {/* <Route exact path='/statistics' element={<Dashboard />} /> */}
             <Route path='*' element={<NotFound />}></Route>
 
             {/* <Route path="/secured" component={Student} /> */}

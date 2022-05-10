@@ -17,7 +17,7 @@ class User extends Component {
 
     render() {
         return (
-            <Button color="inherit"><a target="_blank" href="http://localhost:8080/realms/master/account/">{this.state.name}</a></Button>
+            <Button variant="contained" color="success"><a target="_blank" href="http://localhost:8080/realms/master/account/">{this.state.name}</a></Button>
         );
     }
 }

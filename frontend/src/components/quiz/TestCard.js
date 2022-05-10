@@ -11,6 +11,8 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import CheckIcon from '@mui/icons-material/Check';
+import { useKeycloak } from '@react-keycloak/web';
+import { userApi } from '../../services/userApi';
 
 const useStyles = makeStyles({
     card: {
@@ -25,8 +27,24 @@ const useStyles = makeStyles({
 const TestCard = ({ courseName, test }) => {
     const classes = useStyles();
     const navigate = useNavigate();
+    const { initialized, keycloak } = useKeycloak();
+    const [solvedTest, setSolvedTest] = useState(null);
+    const [error, setError] = useState(false);
 
-    console.log("Chapters:" + test.chapters)
+    useEffect(async () => {
+        if (keycloak && initialized) {
+            try {
+                const response = await userApi.getSolvedTestByTestIdAndUserEmail(keycloak.token, test.id, keycloak.userInfo?.email);
+                console.log("SOLVED TEST " + response.data);
+                if (response?.data !== null && response?.data !== undefined && response?.data != '') {
+                    setSolvedTest(response.data);
+                }
+
+            } catch (error) {
+                setError(true);
+            }
+        }
+    }, [keycloak, initialized])
 
     return (
         <div onClick={() => navigate(`/courses/${courseName}/teste/${test.id}`)}>
@@ -36,7 +54,7 @@ const TestCard = ({ courseName, test }) => {
             >
                 <CardHeader
                     action={
-                        "0 / 10"
+                        solvedTest?.score !== undefined ? solvedTest?.score + " / " + test?.questions?.length : 0 + " / " + test?.questions?.length
                     }
                     title={test.name}
                     subheader={test.description}
