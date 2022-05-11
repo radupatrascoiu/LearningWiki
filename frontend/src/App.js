@@ -22,6 +22,7 @@ import VideoPage from './pages/VideoPage';
 import Feedback from './pages/Feedback';
 import TestFeedback from './pages/TestFeedback';
 import FeedbackForm from './pages/FeedbackForm';
+import Statistics from './pages/Statistics';
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
             <Route exact path='/courses/:courseName/videoclipuri' element={<Videoclipuri />} />
             <Route exact path='/courses/:courseName/videoclipuri/:videoId' element={<VideoPage />} />
             <Route exact path='/cautaMentor' element={<CautaMentor />} />
-            <Route exact path='/chat' element={<Chat />} />
+            {/* <Route exact path='/chat' element={<Chat />} /> */}
             <Route exact path='/raporteazaOGreseala' element={<ReportAMistake />} />
             <Route exact path='/raporteazaOGresealaFormular' element={<ReportAMistakeForm />} />
             <Route exact path='/greseliRaportate' element={<ReportedMistakes />} />
@@ -48,7 +49,7 @@ function App() {
             <Route exact path='/feedback' element={<Feedback />} />
             <Route exact path='/feedback/:solvedTestId' element={<TestFeedback />} />
             <Route exact path='/feedback/:userId/:solvedTestId' element={<FeedbackForm />} />
-            {/* <Route exact path='/statistics' element={<Dashboard />} /> */}
+            <Route exact path='/statistics' element={<Statistics />} />
             <Route path='*' element={<NotFound />}></Route>
 
             {/* <Route path="/secured" component={Student} /> */}

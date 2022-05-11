@@ -87,6 +87,11 @@ function Navbar() {
                                         <Link to="/greseliRaportate">Greseli Raportate</Link>
                                     </Button>
                                 }
+                                {initialized && keycloak?.authenticated &&
+                                    <Button color="inherit">
+                                        <Link to="/statistics">Statistici</Link>
+                                    </Button>
+                                }
                             </Typography>
                         </Grid>
                     </Grid>
