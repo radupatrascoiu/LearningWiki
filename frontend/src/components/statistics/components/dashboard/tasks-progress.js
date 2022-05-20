@@ -18,7 +18,7 @@ export const TasksProgress = (props) => (
             gutterBottom
             variant="overline"
           >
-            TASKS PROGRESS
+            Progresul tau
           </Typography>
           <Typography
             color="textPrimary"

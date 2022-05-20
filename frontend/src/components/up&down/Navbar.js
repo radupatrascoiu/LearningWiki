@@ -58,18 +58,18 @@ function Navbar() {
                         <Grid item>
                             <Typography variant="h7" component="div">
                                 <Button color="inherit">
-                                    <Link to="/">Home</Link>
+                                    <Link to="/">Acasa</Link>
                                 </Button>
                                 {initialized && keycloak?.authenticated &&
                                     <Button color="inherit">
-                                        <Link to="/courses">Courses</Link>
+                                        <Link to="/courses">Cursuri</Link>
                                     </Button>
                                 }
-                                {initialized && keycloak?.authenticated &&
+                                {initialized && keycloak?.authenticated && !AuthorizedFunction(keycloak, ['professor']) &&
                                     <Button color="inherit">
                                         <Link to="/cautaMentor">Cauta Mentor</Link>
                                     </Button>}
-                                {initialized && keycloak?.authenticated &&
+                                {initialized && keycloak?.authenticated && AuthorizedFunction(keycloak, ['professor']) &&
                                     <Button color="inherit">
                                         <Link to="/feedback">Feedback</Link>
                                     </Button>}
@@ -77,18 +77,18 @@ function Navbar() {
                                     <Button color="inherit">
                                         <Link to="/chat">Chat</Link>
                                     </Button>}
-                                {initialized && keycloak?.authenticated &&
+                                {initialized && keycloak?.authenticated && !AuthorizedFunction(keycloak, ['professor']) &&
                                     <Button color="inherit">
                                         <Link to="/raporteazaOGreseala">Raporteaza o greseala</Link>
                                     </Button>
                                 }
-                                {initialized && keycloak?.authenticated &&
+                                {initialized && keycloak?.authenticated && AuthorizedFunction(keycloak, ['professor']) &&
                                     <Button color="inherit">
                                         <Link to="/greseliRaportate">Greseli Raportate</Link>
                                     </Button>
                                 }
-                                {initialized && keycloak?.authenticated &&
-                                    <Button color="inherit">
+                                {initialized && keycloak?.authenticated && !AuthorizedFunction(keycloak, ['professor']) &&
+                                    < Button color="inherit">
                                         <Link to="/statistics">Statistici</Link>
                                     </Button>
                                 }

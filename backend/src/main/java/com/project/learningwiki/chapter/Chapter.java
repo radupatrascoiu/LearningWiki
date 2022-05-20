@@ -20,6 +20,7 @@ public class Chapter {
 
     private String name;
     private String description;
+    @Column(columnDefinition="TEXT")
     private String content;
 
 //    @ManyToOne

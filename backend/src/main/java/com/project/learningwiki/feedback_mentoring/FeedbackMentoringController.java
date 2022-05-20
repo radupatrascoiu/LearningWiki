@@ -1,6 +1,8 @@
 package com.project.learningwiki.feedback_mentoring;
 
+import com.project.learningwiki.solved_test.SolvedTest;
 import com.project.learningwiki.solved_test.SolvedTestService;
+import com.project.learningwiki.user.User;
 import com.project.learningwiki.user.UserService;
 import com.project.learningwiki.utils.ResponseDto;
 import org.springframework.http.ResponseEntity;
@@ -51,10 +53,32 @@ public class FeedbackMentoringController {
         return ResponseEntity.badRequest().body(new ResponseDto("Bad request", List.of()));
     }
 
-    @GetMapping("/by_solvedTestId/{solvedTestId}")
+    @GetMapping("/by_testId/{testId}")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<?> getFeedbacksBySolvedTestId(@PathVariable Integer solvedTestId, HttpServletRequest httpServletRequest) {
-        var feedbacks = feedbackMentoringService.getFeedbacksBySolvedTestId(solvedTestId);
+    public ResponseEntity<?> getFeedbacksByTestId(@PathVariable Integer testId, HttpServletRequest httpServletRequest) {
+        User currentUser = userService.getRequestUser(httpServletRequest);
+        SolvedTest solvedTest = null;
+        if (currentUser != null) {
+            solvedTest = solvedTestService.getSolvedTestByTestIdAndUserId(testId, currentUser.getId());
+        }
+
+        List<FeedbackMentoring> feedbacks = null;
+        if (solvedTest != null) {
+            feedbacks = feedbackMentoringService.getFeedbacksBySolvedTestId(solvedTest.getId());
+        }
+
+        if (feedbacks != null) {
+            return ResponseEntity.ok(feedbacks);
+        }
+
+        return ResponseEntity.badRequest().body(new ResponseDto("Bad request", List.of()));
+    }
+
+    @GetMapping("/by_SolvedTestId/{solvedTestId}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> getFeedbacksBySolvedTestId(@PathVariable Integer solvedTestId) {
+        List<FeedbackMentoring> feedbacks = feedbackMentoringService.getFeedbacksBySolvedTestId(solvedTestId);
+
         if (feedbacks != null) {
             return ResponseEntity.ok(feedbacks);
         }

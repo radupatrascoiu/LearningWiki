@@ -25,7 +25,9 @@ export const userApi = {
     getMyStudents,
     getSolvedTestById,
     sendFeedback,
-    getFeedbacksByUserId
+    getFeedbacksByUserId,
+    getFeedbacksByTestId,
+    getFeedbacksBySolvedTestId
 }
 
 function getUsers(token) {
@@ -229,6 +231,22 @@ function sendFeedback(token, content, userId, solvedTestId) {
 
 function getFeedbacksByUserId(token, userId) {
     return instance.get(`/api/feedback_mentoring/by_userId/${userId}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getFeedbacksByTestId(token, testId) {
+    return instance.get(`/api/feedback_mentoring/by_testId/${testId}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getFeedbacksBySolvedTestId(token, solvedTestId) {
+    return instance.get(`/api/feedback_mentoring/by_SolvedTestId/${solvedTestId}`, {
         headers: {
             'Authorization': bearerAuth(token)
         }

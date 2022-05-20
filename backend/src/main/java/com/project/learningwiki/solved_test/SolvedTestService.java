@@ -72,7 +72,7 @@ public class SolvedTestService {
         return new ArrayList<>(solvedTestRepository.findByUserId(user.getId()));
     }
 
-    public SolvedTest getSolvedTestByTestIdAndUserEmail(Integer testId, Integer userId) {
+    public SolvedTest getSolvedTestByTestIdAndUserId(Integer testId, Integer userId) {
         return solvedTestRepository.findByTestIdAndUserId(testId, userId);
     }
 

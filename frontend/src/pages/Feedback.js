@@ -23,27 +23,84 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Button } from '@mui/material';
 import { capitalizeFirstLetter } from '../utils/util';
 
+function Cacat(props) {
+    const { solvedTest } = props;
+    const { initialized, keycloak } = useKeycloak();
+    const [error, setError] = useState(false);
+    const [sentFeedback, setSentFeedback] = useState(false)
+
+    const isFeedbackSent = async (solvedTest) => {
+        try {
+            const response = await userApi.getFeedbacksBySolvedTestId(keycloak?.token, solvedTest?.id)
+            if (response.status === 200) {
+                return response.data.length;
+            }
+        } catch (error) {
+            setError(true);
+        }
+    }
+
+    useEffect(async () => {
+        if (keycloak && initialized) {
+            const length = await isFeedbackSent(solvedTest);
+            if (length > 0) {
+                setSentFeedback(true);
+            } else {
+                setSentFeedback(false);
+            }
+        }
+    }, [keycloak, initialized, solvedTest])
+
+    return (
+        <div>
+            {console.log(sentFeedback)}
+        </div>
+    )
+}
+
 function Row(props) {
     const { row } = props;
     const [open, setOpen] = React.useState(false);
     const navigate = useNavigate();
     const { initialized, keycloak } = useKeycloak();
     const [error, setError] = useState(false);
-    const [nofeedbacks, setNofeedbacks] = useState([]);
-    const map = new Map();
+    const [nofeedbacks, setNofeedbacks] = useState(null);
+    const [sentFeedback, setSentFeedback] = useState(false)
+
+    console.log(row)
 
     const getNoFeedback = async (userId) => {
         try {
             const response = await userApi.getFeedbacksByUserId(keycloak?.token, userId);
             if (response.status === 200) {
-                console.log("Nr de feedback-uri: " + response.data.length)
-                setNofeedbacks.push(response.data.length);
                 return response.data.length;
             }
         } catch (error) {
             setError(true);
         }
+
+        return 0;
     };
+
+    const isFeedbackSent = async (solvedTest) => {
+        try {
+            const response = await userApi.getFeedbacksBySolvedTestId(keycloak?.token, solvedTest?.id)
+            if (response.status === 200) {
+                if (response.data.length > 0) {
+                    setSentFeedback(true);
+                }
+            }
+        } catch (error) {
+            setError(true);
+        }
+    }
+
+    useEffect(async () => {
+        if (keycloak && initialized) {
+            const nr = await getNoFeedback(row?.user?.id);
+            setNofeedbacks(nr);
+        }
+    }, [keycloak, initialized])
 
     return (
         <React.Fragment>
@@ -60,7 +117,7 @@ function Row(props) {
                 <TableCell component="th" scope="row">{row?.user?.name}</TableCell>
                 <TableCell align="right">{row?.attemptedTests?.length}</TableCell>
                 <TableCell align="right">{row?.solvedTests?.length}</TableCell>
-                {/* <TableCell align="right">{getNoFeedback(row?.user?.id)}</TableCell> */}
+                <TableCell align="right">{nofeedbacks || 0}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -82,17 +139,18 @@ function Row(props) {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {row?.allTests?.map((test) => (
-                                        <TableRow key={test?.id}>
+                                    {row?.allTests?.map((solvedTest) => (
+                                        <TableRow key={solvedTest?.id}>
                                             <TableCell component="th" scope="row">
-                                                {test?.timestamp}
+                                                {solvedTest?.timestamp}
                                             </TableCell>
-                                            <TableCell>{capitalizeFirstLetter(test?.test?.courseName)}</TableCell>
-                                            <TableCell>{test?.test?.name}</TableCell>
-                                            <TableCell>{test?.score} / {test?.test?.questions?.length}</TableCell>
-                                            <TableCell>{test?.attempts}</TableCell>
-                                            <TableCell>✅ ❌</TableCell>
-                                            <TableCell><Button onClick={() => navigate(`/feedback/${test?.id}`)}>Vezi testul</Button></TableCell>
+                                            <TableCell>{capitalizeFirstLetter(solvedTest?.test?.courseName)}</TableCell>
+                                            <TableCell>{solvedTest?.test?.name}</TableCell>
+                                            <TableCell>{solvedTest?.score} / {solvedTest?.test?.questions?.length}</TableCell>
+                                            <TableCell>{solvedTest?.attempts}</TableCell>
+                                            <TableCell><Cacat solvedTest={solvedTest}></Cacat></TableCell>
+                                            {/* <TableCell>{isFeedbackSent(solvedTest) && sentFeedback === true ? '✅' : '❌'}</TableCell> */}
+                                            <TableCell><Button onClick={() => navigate(`/feedback/${solvedTest?.id}`)}>Vezi testul</Button></TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>

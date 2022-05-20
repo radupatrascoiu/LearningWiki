@@ -52,7 +52,7 @@ public class SolvedTestController {
         User user = userService.findUserByEmail(userEmail);
         SolvedTest solvedTest = null;
         if (user != null) {
-            solvedTest = solvedTestService.getSolvedTestByTestIdAndUserEmail(testId, user.getId());
+            solvedTest = solvedTestService.getSolvedTestByTestIdAndUserId(testId, user.getId());
         }
 
         if (solvedTest == null) {

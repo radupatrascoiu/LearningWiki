@@ -1,9 +1,9 @@
 import 'chart.js/auto'
 import { Doughnut } from 'react-chartjs-2';
 import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';
-import LaptopMacIcon from '@mui/icons-material/LaptopMac';
-import PhoneIcon from '@mui/icons-material/Phone';
-import TabletIcon from '@mui/icons-material/Tablet';
+import BatteryCharging20Icon from '@mui/icons-material/BatteryCharging20';
+import BatteryCharging80Icon from '@mui/icons-material/BatteryCharging80';
+import BatteryAlertIcon from '@mui/icons-material/BatteryAlert';
 
 export const TrafficByDevice = (props) => {
   const theme = useTheme();
@@ -18,7 +18,7 @@ export const TrafficByDevice = (props) => {
         hoverBorderColor: '#FFFFFF'
       }
     ],
-    labels: ['Desktop', 'Tablet', 'Mobile']
+    labels: ['Martie', 'Aprilie', 'Mai']
   };
 
   const options = {
@@ -45,28 +45,28 @@ export const TrafficByDevice = (props) => {
 
   const devices = [
     {
-      title: 'Desktop',
+      title: 'Martie',
       value: 63,
-      icon: LaptopMacIcon,
+      icon: BatteryAlertIcon,
       color: '#3F51B5'
     },
     {
-      title: 'Tablet',
+      title: 'Aprilie',
       value: 15,
-      icon: TabletIcon,
+      icon: BatteryCharging20Icon,
       color: '#E53935'
     },
     {
-      title: 'Mobile',
+      title: 'Mai',
       value: 23,
-      icon: PhoneIcon,
+      icon: BatteryCharging80Icon,
       color: '#FB8C00'
     }
   ];
 
   return (
     <Card {...props}>
-      <CardHeader title="Traffic by Device" />
+      <CardHeader title="Teste lucrate in ultimele luni" />
       <Divider />
       <CardContent>
         <Box
