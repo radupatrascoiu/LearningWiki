@@ -9,7 +9,7 @@ const QuizScreen = ({ retry, test }) => {
     const { initialized, keycloak } = useKeycloak();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const QuestionList = test.questions;
-    const [markedAnswers, setMarkedAnswers] = useState(new Array(QuestionList.length));
+    const [markedAnswers, setMarkedAnswers] = useState(new Array());
     const isQuestionEnd = currentQuestionIndex === QuestionList.length;
 
     console.log(QuestionList.length);
@@ -48,10 +48,9 @@ const QuizScreen = ({ retry, test }) => {
                         currentQuestion={currentQuestionIndex + 1}
                         setAnswer={(index) => {
                             setMarkedAnswers((arr) => {
-                                let newArr = [...arr];
-                                newArr[currentQuestionIndex - 1] = index;
-                                return newArr;
-                            });
+                                arr.push(index);
+                                return arr;
+                            })
                             setCurrentQuestionIndex(currentQuestionIndex + 1);
                         }}
                         test={test}

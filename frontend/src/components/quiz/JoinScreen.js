@@ -62,29 +62,23 @@ const JoinScreen = ({ start, test }) => {
                 scroll={scroll}
                 aria-labelledby="scroll-dialog-title"
                 aria-describedby="scroll-dialog-description"
-                maxWidth='sm'
-                fullWidth
+            // maxWidth='sm'
+            // fullWidth
             >
                 <DialogTitle id="scroll-dialog-title">Feedback primit de la mentor</DialogTitle>
-                <DialogContent dividers={scroll === 'paper'}>
-                    <DialogContentText
-                        id="scroll-dialog-description"
-                        ref={descriptionElementRef}
-                        tabIndex={-1}
-                    >
-                        {feedbacks.length === 0 ?
-                            <div>
-                                <Typography variant='h5' color="secondary"> Momentan nu exista feedback pentru acest test.</Typography>
-                            </div> :
-                            feedbacks.map(feedback => (
-                                <div>
-                                    <Typography variant='h4' color="secondary"> Feedback nr. {feedbacks.indexOf(feedback) + 1}</Typography>
-                                    <Typography>{feedback.content}</Typography>
-                                    <br />
-                                    <br />
-                                </div>
-                            ))}
-                    </DialogContentText>
+                <DialogContent dividers>
+                    {feedbacks.length === 0 ?
+
+                        <Typography variant='h5' color="secondary"> Momentan nu exista feedback pentru acest test.</Typography>
+                        :
+                        feedbacks.map(feedback => (
+                            <>
+                                <Typography variant='h4' color="secondary"> Feedback nr. {feedbacks.indexOf(feedback) + 1}</Typography>
+                                <Typography>{feedback.content}</Typography>
+                                <br />
+                                <br />
+                            </>
+                        ))}
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Inchide</Button>

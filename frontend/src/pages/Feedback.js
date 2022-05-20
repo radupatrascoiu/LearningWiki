@@ -23,41 +23,6 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Button } from '@mui/material';
 import { capitalizeFirstLetter } from '../utils/util';
 
-function Cacat(props) {
-    const { solvedTest } = props;
-    const { initialized, keycloak } = useKeycloak();
-    const [error, setError] = useState(false);
-    const [sentFeedback, setSentFeedback] = useState(false)
-
-    const isFeedbackSent = async (solvedTest) => {
-        try {
-            const response = await userApi.getFeedbacksBySolvedTestId(keycloak?.token, solvedTest?.id)
-            if (response.status === 200) {
-                return response.data.length;
-            }
-        } catch (error) {
-            setError(true);
-        }
-    }
-
-    useEffect(async () => {
-        if (keycloak && initialized) {
-            const length = await isFeedbackSent(solvedTest);
-            if (length > 0) {
-                setSentFeedback(true);
-            } else {
-                setSentFeedback(false);
-            }
-        }
-    }, [keycloak, initialized, solvedTest])
-
-    return (
-        <div>
-            {console.log(sentFeedback)}
-        </div>
-    )
-}
-
 function Row(props) {
     const { row } = props;
     const [open, setOpen] = React.useState(false);
@@ -65,9 +30,6 @@ function Row(props) {
     const { initialized, keycloak } = useKeycloak();
     const [error, setError] = useState(false);
     const [nofeedbacks, setNofeedbacks] = useState(null);
-    const [sentFeedback, setSentFeedback] = useState(false)
-
-    console.log(row)
 
     const getNoFeedback = async (userId) => {
         try {
@@ -81,19 +43,6 @@ function Row(props) {
 
         return 0;
     };
-
-    const isFeedbackSent = async (solvedTest) => {
-        try {
-            const response = await userApi.getFeedbacksBySolvedTestId(keycloak?.token, solvedTest?.id)
-            if (response.status === 200) {
-                if (response.data.length > 0) {
-                    setSentFeedback(true);
-                }
-            }
-        } catch (error) {
-            setError(true);
-        }
-    }
 
     useEffect(async () => {
         if (keycloak && initialized) {
@@ -148,8 +97,7 @@ function Row(props) {
                                             <TableCell>{solvedTest?.test?.name}</TableCell>
                                             <TableCell>{solvedTest?.score} / {solvedTest?.test?.questions?.length}</TableCell>
                                             <TableCell>{solvedTest?.attempts}</TableCell>
-                                            <TableCell><Cacat solvedTest={solvedTest}></Cacat></TableCell>
-                                            {/* <TableCell>{isFeedbackSent(solvedTest) && sentFeedback === true ? '✅' : '❌'}</TableCell> */}
+                                            <TableCell>{solvedTest?.hasFeedback === true ? '✅' : '❌'}</TableCell>
                                             <TableCell><Button onClick={() => navigate(`/feedback/${solvedTest?.id}`)}>Vezi testul</Button></TableCell>
                                         </TableRow>
                                     ))}
@@ -168,14 +116,40 @@ export default function Feedback() {
     const { initialized, keycloak } = useKeycloak();
     const [mentorings, setMentorings] = useState([]);
 
-    const navigate = useNavigate();
+    const isFeedbackSent = async (solvedTest) => {
+        try {
+            const response = await userApi.getFeedbacksBySolvedTestId(keycloak?.token, solvedTest?.id)
+            if (response.status === 200) {
+                if (response.data.length > 0) {
+                    return true
+                }
+            }
+        } catch (error) {
+            setError(true);
+        }
+
+        return false;
+    }
 
     useEffect(async () => {
         if (keycloak && initialized) {
             try {
                 const response = await userApi.getMyStudents(keycloak?.token);
-                console.log("STUDENTI: " + response.data)
-                setMentorings(response.data);
+
+                if (response.status === 200) {
+                    response?.data?.map((mentoring) => {
+                        const allTests = mentoring.allTests
+                        allTests.map(async (solvedTest) => {
+                            const response = await isFeedbackSent(solvedTest)
+                            solvedTest["hasFeedback"] = response
+                            return solvedTest
+                        })
+                        mentoring.allTests = allTests
+                        return mentoring
+                    })
+                    setMentorings(response.data);
+                }
+
             } catch (error) {
                 setError(true);
             }
@@ -195,8 +169,8 @@ export default function Feedback() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {mentorings?.map((mentoring) => (
-                        <Row key={mentoring.id} row={mentoring} />
+                    {mentorings?.map((mentoring, index) => (
+                        <Row key={index} row={mentoring} />
                     ))}
                 </TableBody>
             </Table>
