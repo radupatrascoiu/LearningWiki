@@ -40,9 +40,6 @@ const JoinScreen = ({ start, test }) => {
         if (keycloak && initialized) {
             try {
                 const response = await userApi.getFeedbacksByTestId(keycloak.token, test?.id);
-                console.log("BEFORE")
-                console.log(response.data)
-                console.log("AFTER")
                 setFeedbacks(response.data)
             } catch (error) {
                 console.log(error);

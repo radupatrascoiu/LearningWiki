@@ -25,7 +25,7 @@ const Question = ({ question, totalQuestions, currentQuestion, setAnswer, test }
         setTimeout(() => {
             progressBar.current.classList.add("active");
         }, 0);
-        timer.current = setTimeout(goToNextQuestion, 10 * 1000); // 10 seconds
+        timer.current = setTimeout(goToNextQuestion, 100 * 1000); // 10 seconds
         return goToNextQuestion;
     }, [question]);
 
@@ -49,7 +49,7 @@ const Question = ({ question, totalQuestions, currentQuestion, setAnswer, test }
                         question.answers.map((answer, index) => {
                             return (
                                 <div
-                                    className={index == selectedOption ? "option active" : "option"}
+                                    className={index === selectedOption ? "option active" : "option"}
                                     key={index}
                                     onClick={() => setSelectedOption(index)}
                                 >

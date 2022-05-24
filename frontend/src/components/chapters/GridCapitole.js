@@ -26,8 +26,6 @@ const GridCapitole = ({ courseName, clasa }) => {
 
   }
 
-  console.log(chapters)
-
   return (
     <div className='chapter-selection'>
       <Container sige="lg">

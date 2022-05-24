@@ -35,7 +35,6 @@ const TestCard = ({ courseName, test }) => {
         if (keycloak && initialized) {
             try {
                 const response = await userApi.getSolvedTestByTestIdAndUserEmail(keycloak.token, test.id, keycloak.userInfo?.email);
-                console.log("SOLVED TEST " + response.data);
                 if (response?.data !== null && response?.data !== undefined && response?.data != '') {
                     setSolvedTest(response.data);
                 }

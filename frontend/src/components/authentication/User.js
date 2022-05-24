@@ -1,24 +1,21 @@
 import { Button } from '@mui/material';
-import React, { Component, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useKeycloak } from '@react-keycloak/web';
 
-class User extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: "",
-            email: "",
-            id: ""
-        };
-        this.props.keycloak.loadUserInfo().then(userInfo => {
-            this.setState({ name: userInfo.name })
-        });
-    }
+const User = (props) => {
+    const [username, setUsername] = useState("")
+    const { initialized, keycloak } = useKeycloak();
 
-    render() {
-        return (
-            <Button variant="contained" color="success"><a target="_blank" href="http://localhost:8080/realms/master/account/">{this.state.name}</a></Button>
-        );
-    }
+    useEffect(async () => {
+        if (keycloak && initialized) {
+            keycloak.loadUserInfo().then(userInfo => {
+                setUsername(userInfo.name)
+            });
+        }
+    }, [keycloak, initialized])
+
+    return (
+        <Button variant="contained" color="success" onClick={() => window.location.href = "http://localhost:8080/realms/master/account/"}>{username}</Button>
+    )
 }
 export default User;

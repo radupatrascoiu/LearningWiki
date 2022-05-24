@@ -1,4 +1,4 @@
-import { Alert, Button, MenuItem, TextField } from '@mui/material';
+import { Alert, Button, TextField } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -6,11 +6,9 @@ import FormControl from '@mui/material/FormControl';
 import Stack from "@mui/material/Stack";
 import DialogActions from '@mui/material/DialogActions';
 import DialogContentText from '@mui/material/DialogContentText';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import { useNavigate } from "react-router-dom";
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
 import { userApi } from '../services/userApi';
 import { useKeycloak } from '@react-keycloak/web';
 import { useParams } from "react-router";
@@ -39,7 +37,6 @@ const FeedbackForm = () => {
         if (detalii === "") {
             setOpen(true)
         } else {
-            console.log("detalii = |" + detalii + "|");
             const response = await userApi.sendFeedback(keycloak.token, detalii, userId, solvedTestId);
             if (response.status === 200) {
                 setState(1);

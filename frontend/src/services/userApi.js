@@ -27,7 +27,11 @@ export const userApi = {
     sendFeedback,
     getFeedbacksByUserId,
     getFeedbacksByTestId,
-    getFeedbacksBySolvedTestId
+    getFeedbacksBySolvedTestId,
+    getSolvedTestsByUser,
+    getAttemptedTestsByUser,
+    getFeedbacksByUser,
+    getProgressByUser
 }
 
 function getUsers(token) {
@@ -205,6 +209,22 @@ function getSolvedTestByTestIdAndUserEmail(token, testId, userEmail) {
     })
 }
 
+function getSolvedTestsByUser(token) {
+    return instance.get(`/api/solved_tests/by_userEmail/`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getAttemptedTestsByUser(token) {
+    return instance.get(`/api/solved_tests/attempted_tests/by_userEmail/`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
 function getSolvedTestById(token, solvedTestId) {
     return instance.get(`/api/solved_tests/${solvedTestId}`, {
         headers: {
@@ -237,6 +257,14 @@ function getFeedbacksByUserId(token, userId) {
     })
 }
 
+function getFeedbacksByUser(token) {
+    return instance.get(`/api/feedback_mentoring/by_userId`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
 function getFeedbacksByTestId(token, testId) {
     return instance.get(`/api/feedback_mentoring/by_testId/${testId}`, {
         headers: {
@@ -247,6 +275,14 @@ function getFeedbacksByTestId(token, testId) {
 
 function getFeedbacksBySolvedTestId(token, solvedTestId) {
     return instance.get(`/api/feedback_mentoring/by_SolvedTestId/${solvedTestId}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getProgressByUser(token) {
+    return instance.get(`/api/progress`, {
         headers: {
             'Authorization': bearerAuth(token)
         }

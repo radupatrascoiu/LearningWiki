@@ -108,25 +108,19 @@ const Course = () => {
     if (keycloak && initialized) {
       try {
         const response = await userApi.getCourse(keycloak?.token, courseName);
-        console.log("CURSUL: " + response.data)
         setCourse(response.data);
 
         const response2 = await userApi.getMyMentor(keycloak?.token);
-        console.log("MyMentor = " + response2.data.name)
         if (response2?.data !== null && response2?.data !== undefined && response2?.data != '') {
           setMyMentor(response2.data);
         }
 
-        console.log("AICI |" + myMentor + "|");
-
         const response3 = await userApi.getAllTestsByCourseName(keycloak.token, courseName);
-        console.log("response3 = " + response3?.data);
         if (response3?.data !== null && response3?.data !== undefined && response3?.data != '') {
           setTests(response3.data);
         }
 
         const response4 = await userApi.getSolvedTestsByUserEmailAndCourseName(keycloak.token, keycloak.userInfo?.email, courseName);
-        console.log("QQQQQQQQQQQQQQQQQQ " + response4?.data);
         if (response4?.data !== null && response4?.data !== undefined && response4?.data != '') {
           setSolvedTests(response4.data);
         }

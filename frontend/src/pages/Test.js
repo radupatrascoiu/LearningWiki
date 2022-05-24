@@ -16,7 +16,6 @@ const Test = () => {
         if (keycloak && initialized) {
             try {
                 const response = await userApi.getTest(keycloak.token, testId);
-                console.log("TEST: " + response.data)
                 setTest(response.data)
             } catch (error) {
                 console.log(error);

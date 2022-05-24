@@ -12,9 +12,6 @@ const QuizScreen = ({ retry, test }) => {
     const [markedAnswers, setMarkedAnswers] = useState(new Array());
     const isQuestionEnd = currentQuestionIndex === QuestionList.length;
 
-    console.log(QuestionList.length);
-    console.log("Current = " + currentQuestionIndex);
-
     const calculateResult = () => {
         let correct = 0;
         console.log("RASPUNSURI: " + markedAnswers);

@@ -15,7 +15,6 @@ const TestFeedback = () => {
         if (keycloak && initialized) {
             try {
                 const response = await userApi.getSolvedTestById(keycloak?.token, solvedTestId);
-                console.log("SOLVED TEST: " + response.data)
                 setSolvedTest(response.data);
             } catch (error) {
                 setError(true);

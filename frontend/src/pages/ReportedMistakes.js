@@ -6,7 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import { useState, useEffect, Fragment } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/requests.css'
 import { useKeycloak } from '@react-keycloak/web';
 import { userApi } from '../services/userApi';
@@ -25,7 +25,6 @@ const ReportedMistakes = () => {
             try {
                 const response = await userApi.getMistakes(keycloak.token);
                 setMistakes(response.data)
-                console.log(mistakes);
             } catch (error) {
                 console.log(error);
             }

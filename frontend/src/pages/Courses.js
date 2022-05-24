@@ -40,7 +40,6 @@ const Courses = () => {
         if (keycloak && initialized) {
             try {
                 const response = await userApi.getCourses(keycloak?.token);
-                console.log("RESPONSE: " + response.data)
                 setCourses(response.data);
             } catch (error) {
                 setError(true);

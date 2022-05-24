@@ -5,9 +5,6 @@ import '../../styles/quiz.css'
 
 const FeedbackQuestion = ({ question, totalQuestions, currentQuestion, setNextQuestion, setPreviousQuestion, solvedTest, markedAnswers }) => {
     const [selectedOption, setSelectedOption] = useState(null);
-
-    console.log(markedAnswers)
-
     const goToNextQuestion = () => {
 
         flushSync(() => {
@@ -41,15 +38,76 @@ const FeedbackQuestion = ({ question, totalQuestions, currentQuestion, setNextQu
                 </div>
                 <div className="options">
                     {
+                        // question.answers.map((answer, index) => {
+
+                        //     return (
+                        //         // question.correctOptionIndex === markedAnswers[index].index
+                        //         //     ?
+                        //         //     <div
+                        //         //         className="option correct">
+                        //         //         <td dangerouslySetInnerHTML={{ __html: answer.content }} />
+                        //         //     </div>
+                        //         //     :
+                        //         //     console.log(index)
+                        //         // (index === markedAnswers[index].index
+                        //         //     ?
+                        //         //     <div
+                        //         //         className="option wrong">
+                        //         //         <td dangerouslySetInnerHTML={{ __html: answer.content }} />
+                        //         //     </div>
+                        //         //     :
+                        //         //     <div>
+                        //         //         <td dangerouslySetInnerHTML={{ __html: answer.content }} />
+                        //         //     </div>
+                        //         // )
+                        //     );
+                        // })
+
+
+
+                        // markedAnswers.map((markedAnswer, index) => {
+                        //     return (
+                        //         markedAnswer.index === question.correctOptionIndex
+                        //             ?
+                        //             question.answers.map((answer, index) => {
+                        //                 <div>
+                        //                     <td dangerouslySetInnerHTML={{ __html: answer.content }} />
+                        //                 </div>
+                        //             })
+                        //             :
+                        //             question.answers.map((answer, index) => {
+                        //                 <div>
+                        //                     <td dangerouslySetInnerHTML={{ __html: answer.content }} />
+                        //                 </div>
+                        //             })
+                        //     )
+                        // })
+
+
                         question.answers.map((answer, index) => {
                             return (
-                                <div
-                                    className={question.correctOptionIndex === markedAnswers[0].index ? "option correct" : "option wrong"}
-                                    key={index}
-                                >
-                                    <td dangerouslySetInnerHTML={{ __html: answer.content }} />
-                                </div>
-                            );
+                                question.correctOptionIndex === markedAnswers[currentQuestion - 1].index
+                                    ? (index === currentQuestion - 1 ?
+                                        <div className="option correct">
+                                            <td dangerouslySetInnerHTML={{ __html: question.answers[currentQuestion - 1].content }} />
+                                        </div>
+                                        :
+                                        <div>
+                                            <td dangerouslySetInnerHTML={{ __html: question.answers[currentQuestion - 1].content }} />
+                                        </div>
+                                    )
+
+                                    : (index === currentQuestion - 1 ?
+                                        <div className="option wrong">
+                                            <td dangerouslySetInnerHTML={{ __html: answer.content }} />
+                                        </div>
+                                        :
+                                        <div>
+                                            <td dangerouslySetInnerHTML={{ __html: question.answers[currentQuestion - 1].content }} />
+                                        </div>
+                                    )
+
+                            )
                         })
                     }
                 </div>

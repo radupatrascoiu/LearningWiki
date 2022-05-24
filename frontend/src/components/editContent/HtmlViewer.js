@@ -15,7 +15,6 @@ const HtmlViewer = ({ chapterId }) => {
         if (keycloak && initialized) {
             try {
                 const response = await userApi.getChapter(keycloak?.token, chapterId);
-                console.log("Response = " + response.data.content);
                 setContent(response.data.content);
             } catch (error) {
                 console.log(error);

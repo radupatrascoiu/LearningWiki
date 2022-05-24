@@ -16,7 +16,6 @@ const HtmlEditor = ({ chapterId, contentState, setContentState }) => {
         if (keycloak && initialized) {
             try {
                 const response = await userApi.getChapter(keycloak?.token, chapterId);
-                console.log("Name = " + response.data.name);
                 setContentState(response.data.content);
                 setName(response.data.name);
                 setDescription(response.data.description);

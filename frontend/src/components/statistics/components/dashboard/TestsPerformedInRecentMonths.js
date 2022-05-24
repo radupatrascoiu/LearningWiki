@@ -5,7 +5,7 @@ import BatteryCharging20Icon from '@mui/icons-material/BatteryCharging20';
 import BatteryCharging80Icon from '@mui/icons-material/BatteryCharging80';
 import BatteryAlertIcon from '@mui/icons-material/BatteryAlert';
 
-export const TrafficByDevice = (props) => {
+export const TestsPerformedInRecentMonths = (props) => {
   const theme = useTheme();
 
   const data = {

@@ -7,7 +7,7 @@ import FormControl from '@mui/material/FormControl';
 import Stack from "@mui/material/Stack";
 import DialogActions from '@mui/material/DialogActions';
 import DialogContentText from '@mui/material/DialogContentText';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import { useNavigate } from "react-router-dom";
 import InputLabel from '@mui/material/InputLabel';
@@ -52,10 +52,7 @@ const ReportAMistakeForm = () => {
         if (materie === "" || clasa < 9 || clasa > 12 || capitol === "" || detalii === "") {
             setOpen(true)
         } else {
-            console.log("materie = |" + materie + "| clasa = |" + clasa + "| capitol = |" + capitol + "| detalii = |" + detalii + "|");
-
             const response = await userApi.reportAMistake(keycloak.token, materie, clasa, capitol, detalii);
-
             navigate("/raporteazaOGreseala")
         }
     }

@@ -13,7 +13,6 @@ const GridVideoclipuri = ({ courseName, clasa }) => {
         if (keycloak && initialized) {
             try {
                 const response = await userApi.getVideos(keycloak.token, courseName, clasa);
-                console.log(response.data)
                 setVideos(response.data)
             } catch (error) {
                 console.log(error);

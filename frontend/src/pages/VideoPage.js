@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player'
 import '../styles/videoclipuri.css'
-import { Container, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useKeycloak } from '@react-keycloak/web';
 import { userApi } from '../services/userApi';
 import { useParams } from "react-router";
-import Paper from '@mui/material/Paper';
 
 const VideoPage = () => {
     const { initialized, keycloak } = useKeycloak();
@@ -16,7 +15,6 @@ const VideoPage = () => {
         if (keycloak && initialized) {
             try {
                 const response = await userApi.getVideo(keycloak.token, videoId);
-                console.log(response.data)
                 setVideo(response.data)
             } catch (error) {
                 console.log(error);

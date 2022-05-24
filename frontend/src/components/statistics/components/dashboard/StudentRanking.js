@@ -80,7 +80,7 @@ const orders = [
   }
 ];
 
-export const LatestOrders = (props) => (
+export const StudentRanking = (props) => (
   <Card {...props}>
     <CardHeader title="Clasament elevi" />
     <PerfectScrollbar>
@@ -89,10 +89,10 @@ export const LatestOrders = (props) => (
           <TableHead>
             <TableRow>
               <TableCell>
-                Order Ref
+                Nume elev
               </TableCell>
               <TableCell>
-                Customer
+                Mentor
               </TableCell>
               <TableCell sortDirection="desc">
                 <Tooltip
@@ -103,12 +103,12 @@ export const LatestOrders = (props) => (
                     active
                     direction="desc"
                   >
-                    Date
+                    Teste rezolvate
                   </TableSortLabel>
                 </Tooltip>
               </TableCell>
               <TableCell>
-                Status
+                Feedback-uri primite
               </TableCell>
             </TableRow>
           </TableHead>

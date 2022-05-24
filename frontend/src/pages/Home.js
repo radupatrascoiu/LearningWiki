@@ -18,11 +18,15 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { withHooksKC } from '../utils/withHooksKC';
+import { userApi } from '../services/userApi';
+import User from '../components/authentication/User';
 
 const Home = () => {
   const { initialized, keycloak } = useKeycloak();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false)
+  const [error, setError] = useState(false);
+  const [username, setUsername] = useState(null)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -31,6 +35,14 @@ const Home = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(async () => {
+    if (keycloak && initialized) {
+      keycloak.loadUserInfo().then(userInfo => {
+        setUsername(userInfo.name)
+      });
+    }
+  }, [keycloak, initialized])
 
   const data = {
     title: <p style={
@@ -58,16 +70,25 @@ const Home = () => {
     <div className="container">
       <div>
         <div className="motto">
-
-          <Typography
-            style={{ fontWeight: 600 }}
-            color="textPrimary"
-            gutterBottom
-            variant="h5"
-          >
-            Cursuri online <mark class="red"> gratuite</mark> pentru toți elevii
-          </Typography>
-
+          {initialized && keycloak?.authenticated ?
+            <Typography
+              style={{ fontWeight: 600 }}
+              color="textPrimary"
+              gutterBottom
+              variant="h5"
+            >
+              Cursuri online <mark className="red"> gratuite</mark> pentru {username}
+            </Typography>
+            :
+            <Typography
+              style={{ fontWeight: 600 }}
+              color="textPrimary"
+              gutterBottom
+              variant="h5"
+            >
+              Cursuri online <mark className="red"> gratuite</mark> pentru toți elevii
+            </Typography>
+          }
         </div>
 
         <div className="first-part-content">

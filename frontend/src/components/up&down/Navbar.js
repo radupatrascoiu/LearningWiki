@@ -18,17 +18,14 @@ import IconButton from '@mui/material/IconButton';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
     const [isProfessor, setIsProfessor] = useState(false);
     const { initialized, keycloak } = useKeycloak();
+    const navigate = useNavigate();
 
-    const [auth, setAuth] = React.useState(true);
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const handleChange = (event) => {
-        setAuth(event.target.checked);
-    };
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -52,14 +49,13 @@ function Navbar() {
                     <Grid className="leftGrid" container>
                         <Grid item>
                             <Typography type="title" variant="h6" component="div">
-                                <img className="logo" src={logo} alt="Learning Wiki" />
+                                <Button color="inherit" onClick={() => navigate("/")}>
+                                    <img className="logo" src={logo} alt="Learning Wiki" />
+                                </Button>
                             </Typography>
                         </Grid>
                         <Grid item>
                             <Typography variant="h7" component="div">
-                                <Button color="inherit">
-                                    <Link to="/">Acasa</Link>
-                                </Button>
                                 {initialized && keycloak?.authenticated &&
                                     <Button color="inherit">
                                         <Link to="/courses">Cursuri</Link>

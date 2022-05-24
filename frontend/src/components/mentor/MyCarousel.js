@@ -28,7 +28,6 @@ const MyCarousel = () => {
   const refreshComponent = () => setRefreshFlag(!refreshFlag)
 
   const handleClickOpen = async (professorId) => {
-    console.log("AICIIIIIIIIIIIIIII = " + professorId);
     setOpen(true);
     try {
       const response = await userApi.addNewMentoring(keycloak?.token, professorId);
@@ -73,17 +72,12 @@ const MyCarousel = () => {
     if (keycloak && initialized) {
       try {
         const response1 = await userApi.getAllProfessors(keycloak?.token);
-        console.log("Professors = " + response1.data);
         setProfessors(response1.data);
 
         const response2 = await userApi.getMyMentor(keycloak?.token);
-        console.log("MyMentor = " + response2.data.name)
         if (response2?.data !== null && response2?.data !== undefined && response2?.data != '') {
           setMyMentor(response2.data);
         }
-
-        console.log("AICI |" + myMentor + "|");
-
       } catch (error) {
         console.log(error);
       }
