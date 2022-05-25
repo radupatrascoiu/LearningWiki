@@ -1,13 +1,12 @@
 package com.project.learningwiki.user;
 
-import com.project.learningwiki.progress.Progress;
-import com.project.learningwiki.solved_test.SolvedTest;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Setter
@@ -24,10 +23,6 @@ public class User {
     private String name;
     private String email;
     private String role;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<SolvedTest> solvedTestList = new ArrayList<>();
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Progress> progresses;
 
     @Override
     public String toString() {
@@ -36,7 +31,6 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
-                ", solvedTestList=" + solvedTestList +
                 '}';
     }
 

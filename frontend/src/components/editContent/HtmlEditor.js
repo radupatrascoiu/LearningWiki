@@ -6,7 +6,7 @@ import { useKeycloak } from '@react-keycloak/web';
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
 
-const HtmlEditor = ({ chapterId, contentState, setContentState }) => {
+const HtmlEditor = ({ courseName, chapterId, contentState, setContentState }) => {
     const { initialized, keycloak } = useKeycloak();
     const navigate = useNavigate();
     const [name, setName] = useState('');
@@ -29,7 +29,8 @@ const HtmlEditor = ({ chapterId, contentState, setContentState }) => {
     const editChapterContent = async () => {
         try {
             const response = await userApi.editChapterContent(keycloak?.token, chapterId, name, description, contentState);
-            console("POST RESPONSE = " + response);
+            console.log("PUT RESPONSE = ");
+            console.log(response);
         } catch (error) {
             console.log(error);
         }
@@ -37,7 +38,7 @@ const HtmlEditor = ({ chapterId, contentState, setContentState }) => {
 
     const handleSave = () => {
         editChapterContent();
-        navigate(`/courses/${name}/materiale/${chapterId}/view`)
+        navigate(`/courses/${courseName}/materiale/${chapterId}/view`)
     }
 
     return (

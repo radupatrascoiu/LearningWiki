@@ -1,5 +1,6 @@
 package com.project.learningwiki.solved_test;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.learningwiki.marked_answer.MarkedAnswer;
 import com.project.learningwiki.test.Test;
 import com.project.learningwiki.user.User;
@@ -41,6 +42,7 @@ public class SolvedTest {
     private Integer attempts;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Europe/Bucharest")
     private Date timestamp;
 
     public SolvedTest(User user, Test test, Integer score, List<MarkedAnswer> markedAnswers, Integer attempts, Date timestamp) {

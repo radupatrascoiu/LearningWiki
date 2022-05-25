@@ -9,7 +9,7 @@ const EditChapterContent = () => {
     return (
         <div>
             {/* <HtmlViewer contentState={content}></HtmlViewer> */}
-            <HtmlEditor chapterId={chapterId} contentState={content} setContentState={setContent}></HtmlEditor>
+            <HtmlEditor courseName={courseName} chapterId={chapterId} contentState={content} setContentState={setContent}></HtmlEditor>
         </div>
     );
 }

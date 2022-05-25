@@ -31,7 +31,10 @@ export const userApi = {
     getSolvedTestsByUser,
     getAttemptedTestsByUser,
     getFeedbacksByUser,
-    getProgressByUser
+    getProgressByUser,
+    getLastSolvedTestsByUser,
+    getAllUsersProgress,
+    getTestsInTheLastPeriodByClass
 }
 
 function getUsers(token) {
@@ -283,6 +286,30 @@ function getFeedbacksBySolvedTestId(token, solvedTestId) {
 
 function getProgressByUser(token) {
     return instance.get(`/api/progress`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getAllUsersProgress(token) {
+    return instance.get(`/api/solved_tests/ranking_by_progress`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getLastSolvedTestsByUser(token) {
+    return instance.get(`/api/solved_tests/last_solved_tests`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getTestsInTheLastPeriodByClass(token) {
+    return instance.get(`/api/solved_tests/in_the_last_period`, {
         headers: {
             'Authorization': bearerAuth(token)
         }

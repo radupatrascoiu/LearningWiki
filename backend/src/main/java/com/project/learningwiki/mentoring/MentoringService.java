@@ -22,4 +22,13 @@ public class MentoringService {
         List<Mentoring> mentoringList = mentoringRepository.findByProfessorId(professor.getId());
         return mentoringList.stream().map(Mentoring::getStudent).collect(Collectors.toList());
     }
+
+    public User getMyMentor(User user) {
+        Mentoring mentoring = mentoringRepository.findByStudentId(user.getId());
+        if (mentoring != null) {
+            return mentoring.getProfessor();
+        }
+
+        return null;
+    }
 }

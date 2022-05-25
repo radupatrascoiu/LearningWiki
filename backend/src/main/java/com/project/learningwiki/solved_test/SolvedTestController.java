@@ -1,5 +1,6 @@
 package com.project.learningwiki.solved_test;
 
+import com.project.learningwiki.user.RankingDto;
 import com.project.learningwiki.user.User;
 import com.project.learningwiki.user.UserService;
 import com.project.learningwiki.utils.ResponseDto;
@@ -35,9 +36,57 @@ public class SolvedTestController {
         return ResponseEntity.badRequest().body(new ResponseDto("Bad request", false));
     }
 
+    @GetMapping("/by_userEmail/")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> getSolvedTestsByUserEmail(HttpServletRequest request) {
+        var currentUser = userService.getRequestUser(request);
+        List<SolvedTest> solvedTests = null;
+        if (currentUser != null) {
+            solvedTests = solvedTestService.getSolvedTestsByUser(currentUser);
+        }
+
+        if (solvedTests == null) {
+            return ResponseEntity.badRequest()
+                    .body(new ResponseDto("This user doesn't have solved tests.", false));
+        }
+        return ResponseEntity.ok(solvedTests);
+    }
+
+    @GetMapping("/last_solved_tests")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> getLastSolvedTestsByUser(HttpServletRequest request) {
+        var currentUser = userService.getRequestUser(request);
+        List<SolvedTest> lastSolvedTests = null;
+        if (currentUser != null) {
+            lastSolvedTests = solvedTestService.getLastSolvedTestsByUser(currentUser);
+        }
+
+        if (lastSolvedTests == null) {
+            return ResponseEntity.badRequest()
+                    .body(new ResponseDto("This user doesn't have solved tests.", false));
+        }
+        return ResponseEntity.ok(lastSolvedTests);
+    }
+
+    @GetMapping("/attempted_tests/by_userEmail/")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> getAttemptedTestsByUserEmail(HttpServletRequest request) {
+        var currentUser = userService.getRequestUser(request);
+        List<SolvedTest> attemptedTests = null;
+        if (currentUser != null) {
+            attemptedTests = solvedTestService.getAllTestsByUser(currentUser);
+        }
+
+        if (attemptedTests == null) {
+            return ResponseEntity.badRequest()
+                    .body(new ResponseDto("This user doesn't have solved tests.", false));
+        }
+        return ResponseEntity.ok(attemptedTests);
+    }
+
     @GetMapping("/by_course/{userEmail}/{courseName}")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<?> getSolvedTestsByUserEmail(@PathVariable(value = "userEmail") String userEmail, @PathVariable(value = "courseName") String courseName) {
+    public ResponseEntity<?> getSolvedTestsByUserEmailAndCourseName(@PathVariable(value = "userEmail") String userEmail, @PathVariable(value = "courseName") String courseName) {
         List<SolvedTest> solvedTests = solvedTestService.getTestsByUserEmailAndCourseName(userEmail, courseName);
         if (solvedTests == null || solvedTests.isEmpty()) {
             return ResponseEntity.badRequest()
@@ -72,5 +121,32 @@ public class SolvedTestController {
                     .body(new ResponseDto("This user doesn't have solved tests.", false));
         }
         return ResponseEntity.ok(solvedTest);
+    }
+
+    @GetMapping("/ranking_by_progress")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> getAllUsersProgress() {
+        List<RankingDto> rankings = solvedTestService.generateRanking();
+        if (rankings != null) {
+            return ResponseEntity.ok(rankings);
+        }
+
+        return ResponseEntity.badRequest()
+                .body(new ResponseDto("There are no rankings for users.", false));
+    }
+
+    @GetMapping("/in_the_last_period")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> getTestsInTheLastPeriodByClass(HttpServletRequest request) {
+        var currentUser = userService.getRequestUser(request);
+        if (currentUser != null) {
+            List<SolvedTestsInTheLastPeriodDto> testsInTheLastPeriodByClass = solvedTestService.getTestsInTheLastPeriodByClass(currentUser);
+            if (testsInTheLastPeriodByClass != null) {
+                return ResponseEntity.ok(testsInTheLastPeriodByClass);
+            }
+        }
+
+        return ResponseEntity.badRequest()
+                .body(new ResponseDto("There are no solved tests for the current user in the last period.", false));
     }
 }

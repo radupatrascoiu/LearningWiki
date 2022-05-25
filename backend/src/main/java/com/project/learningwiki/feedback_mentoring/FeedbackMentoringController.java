@@ -1,5 +1,6 @@
 package com.project.learningwiki.feedback_mentoring;
 
+import com.project.learningwiki.notification.EmailSenderService;
 import com.project.learningwiki.solved_test.SolvedTest;
 import com.project.learningwiki.solved_test.SolvedTestService;
 import com.project.learningwiki.user.User;
@@ -20,11 +21,13 @@ public class FeedbackMentoringController {
     private final FeedbackMentoringService feedbackMentoringService;
     private final UserService userService;
     private final SolvedTestService solvedTestService;
+    private final EmailSenderService emailSenderService;
 
-    public FeedbackMentoringController(FeedbackMentoringService feedbackMentoringService, UserService userService, SolvedTestService solvedTestService) {
+    public FeedbackMentoringController(FeedbackMentoringService feedbackMentoringService, UserService userService, SolvedTestService solvedTestService, EmailSenderService emailSenderService) {
         this.feedbackMentoringService = feedbackMentoringService;
         this.userService = userService;
         this.solvedTestService = solvedTestService;
+        this.emailSenderService = emailSenderService;
     }
 
     @PostMapping("/add/{content}/{userId}/{solvedTestId}")
@@ -36,6 +39,8 @@ public class FeedbackMentoringController {
 
         if (content != null && professor != null && student != null && solvedTest != null) {
             feedbackMentoringService.addFeedback(new FeedbackMentoring(content, professor, student, solvedTest));
+            emailSenderService.sendEmail(student.getEmail(), "Feedback primit de la mentor",
+                    "Salut,\n\nTocmai ai primit un feedback la testul " + solvedTest.getTest().getName() + "(" + solvedTest.getTest().getCourseName() + ")" + " de la mentorul tau: " + professor.getName() + ".\n\nSpor!");
             return ResponseEntity.ok(new ResponseDto("Success", true));
         }
 
@@ -50,6 +55,20 @@ public class FeedbackMentoringController {
             return ResponseEntity.ok(feedbacks);
         }
 
+        return ResponseEntity.badRequest().body(new ResponseDto("Bad request", List.of()));
+    }
+
+    @GetMapping("/by_userId")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> getFeedbacksByUser(HttpServletRequest httpServletRequest) {
+        var currentUser = userService.getRequestUser(httpServletRequest);
+
+        if (currentUser != null) {
+            var feedbacks = feedbackMentoringService.getFeedbacksByUserId(currentUser.getId());
+            if (feedbacks != null) {
+                return ResponseEntity.ok(feedbacks);
+            }
+        }
         return ResponseEntity.badRequest().body(new ResponseDto("Bad request", List.of()));
     }
 

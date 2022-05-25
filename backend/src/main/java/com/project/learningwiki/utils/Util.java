@@ -10,8 +10,6 @@ import com.project.learningwiki.course_chapter.CourseChapter;
 import com.project.learningwiki.course_chapter.CourseChapterRepository;
 import com.project.learningwiki.marked_answer.MarkedAnswerRepository;
 import com.project.learningwiki.mentoring.MentoringRepository;
-import com.project.learningwiki.progress.Progress;
-import com.project.learningwiki.progress.ProgressRepository;
 import com.project.learningwiki.question.Question;
 import com.project.learningwiki.question.QuestionRepository;
 import com.project.learningwiki.solved_test.SolvedTestRepository;
@@ -35,8 +33,6 @@ public class Util {
     @Autowired
     private ChapterRepository chapterRepository;
     @Autowired
-    private ProgressRepository progressRepository;
-    @Autowired
     private CourseChapterRepository courseChapterRepository;
     @Autowired
     private TestRepository testRepository;
@@ -57,9 +53,7 @@ public class Util {
 
         // Clear the db
         courseChapterRepository.deleteAll();
-        progressRepository.deleteAll();
         courseRepository.deleteAll();
-        progressRepository.deleteAll();
         solvedTestRepository.deleteAll();
         mentoringRepository.deleteAll();
         testRepository.deleteAll();
@@ -187,40 +181,35 @@ public class Util {
 
         User user = userRepository.findByEmail("patrascoiu.ion.radu@gmail.com");
 
-        if (user != null) {
-            Progress progress = progressRepository.save(new Progress(user, matematica, "un progres f bun"));
-            progressRepository.save(progress);
-        }
+        Answer answer1 = new Answer("-1");
+        Answer answer2 = new Answer("1");
+        Answer answer3 = new Answer("3");
+        Answer answer4 = new Answer("-3");
 
-        Answer answer1 = new Answer("<img src=\"https://i.ibb.co/hVbYPxx/rasp1.png\" alt=\"rasp1\" border=\"0\">");
-        Answer answer2 = new Answer("<img src=\"https://i.ibb.co/PT224yN/rasp2.png\" alt=\"rasp2\" border=\"0\">");
-        Answer answer3 = new Answer("<img src=\"https://i.ibb.co/QJ3grBh/rasp3.png\" alt=\"rasp3\" border=\"0\">");
-        Answer answer4 = new Answer("<img src=\"https://i.ibb.co/T8xnSyK/rasp4.png\" alt=\"rasp4\" border=\"0\">");
+        Answer answer5 = new Answer("<img src=\"https://i.ibb.co/V2B6FPW/1.png\" alt=\"rasp1\" border=\"0\">");
+        Answer answer6 = new Answer("<img src=\"https://i.ibb.co/V2B6FPW/1.png\" alt=\"rasp2\" border=\"0\">");
+        Answer answer7 = new Answer("<img src=\"https://i.ibb.co/V2B6FPW/1.png\" alt=\"1\" border=\"0\">");
+        Answer answer8 = new Answer("<img src=\"https://i.ibb.co/V2B6FPW/1.png\" alt=\"rasp4\" border=\"0\">");
 
-        Answer answer5 = new Answer("<img src=\"https://i.ibb.co/hVbYPxx/rasp1.png\" alt=\"rasp1\" border=\"0\">");
-        Answer answer6 = new Answer("<img src=\"https://i.ibb.co/PT224yN/rasp2.png\" alt=\"rasp2\" border=\"0\">");
-        Answer answer7 = new Answer("<img src=\"https://i.ibb.co/QJ3grBh/rasp3.png\" alt=\"rasp3\" border=\"0\">");
-        Answer answer8 = new Answer("<img src=\"https://i.ibb.co/T8xnSyK/rasp4.png\" alt=\"rasp4\" border=\"0\">");
+        Answer answer9 = new Answer("<img src=\"https://i.ibb.co/V2B6FPW/1.png\" alt=\"rasp1\" border=\"0\">");
+        Answer answer10 = new Answer("<img src=\"https://i.ibb.co/V2B6FPW/1.png\" alt=\"rasp2\" border=\"0\">");
+        Answer answer11 = new Answer("<img src=\"https://i.ibb.co/V2B6FPW/1.png\" alt=\"rasp3\" border=\"0\">");
+        Answer answer12 = new Answer("<img src=\"https://i.ibb.co/V2B6FPW/1.png\" alt=\"rasp4\" border=\"0\">");
 
-        Answer answer9 = new Answer("<img src=\"https://i.ibb.co/hVbYPxx/rasp1.png\" alt=\"rasp1\" border=\"0\">");
-        Answer answer10 = new Answer("<img src=\"https://i.ibb.co/PT224yN/rasp2.png\" alt=\"rasp2\" border=\"0\">");
-        Answer answer11 = new Answer("<img src=\"https://i.ibb.co/QJ3grBh/rasp3.png\" alt=\"rasp3\" border=\"0\">");
-        Answer answer12 = new Answer("<img src=\"https://i.ibb.co/T8xnSyK/rasp4.png\" alt=\"rasp4\" border=\"0\">");
-
-        Answer answer13 = new Answer("<img src=\"https://i.ibb.co/hVbYPxx/rasp1.png\" alt=\"rasp1\" border=\"0\">");
-        Answer answer14 = new Answer("<img src=\"https://i.ibb.co/PT224yN/rasp2.png\" alt=\"rasp2\" border=\"0\">");
-        Answer answer15 = new Answer("<img src=\"https://i.ibb.co/QJ3grBh/rasp3.png\" alt=\"rasp3\" border=\"0\">");
-        Answer answer16 = new Answer("<img src=\"https://i.ibb.co/T8xnSyK/rasp4.png\" alt=\"rasp4\" border=\"0\">");
+        Answer answer13 = new Answer("<img src=\"https://i.ibb.co/V2B6FPW/1.png\" alt=\"rasp1\" border=\"0\">");
+        Answer answer14 = new Answer("<img src=\"https://i.ibb.co/V2B6FPW/1.png\" alt=\"rasp2\" border=\"0\">");
+        Answer answer15 = new Answer("<img src=\"https://i.ibb.co/V2B6FPW/1.png\" alt=\"rasp3\" border=\"0\">");
+        Answer answer16 = new Answer("<img src=\"https://i.ibb.co/V2B6FPW/1.png\" alt=\"rasp4\" border=\"0\">");
 
         List<Answer> answers1 = List.of(answer1, answer2, answer3, answer4);
         List<Answer> answers2 = List.of(answer5, answer6, answer7, answer8);
         List<Answer> answers3 = List.of(answer9, answer10, answer11, answer12);
         List<Answer> answers4 = List.of(answer13, answer14, answer15, answer16);
 
-        Question question1 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\"></a>", answers1, chapter1, 0);
-        Question question2 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\"></a>", answers2, chapter2, 0);
-        Question question3 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\"></a>", answers3, chapter3, 0);
-        Question question4 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\"></a>", answers4, chapter1, 0);
+        Question question1 = new Question("<img src=\"https://i.ibb.co/YcFdbGG/Screenshot-2.png\" alt=\"Screenshot-2\" border=\"0\">", answers1, chapter1, 0);
+        Question question2 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\">", answers2, chapter2, 0);
+        Question question3 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\">", answers3, chapter3, 0);
+        Question question4 = new Question("<img src=\"https://i.ibb.co/rx68MJs/matrice.png\" alt=\"matrice\" border=\"0\">", answers4, chapter1, 0);
 
         questionRepository.save(question1);
         questionRepository.save(question2);
@@ -239,7 +228,7 @@ public class Util {
         testRepository.save(new Test("Test 1", 9, "informatica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
         testRepository.save(new Test("Test 2", 9, "informatica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
         testRepository.save(new Test("Test 3", 9, "informatica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
-
+        testRepository.save(new Test("Test 4", 11, "informatica", List.of(chapter1, chapter2, chapter3), List.of(question1, question2, question3, question4)));
 
         Video video1 = new Video("Siruri", 9, "matematica", "Modalitati de a defini un sir, siruri marginite, siruri monotone", "https://www.youtube.com/watch?v=ysz5S6PUM-U");
         Video video2 = new Video("Siruri", 9, "matematica", "Modalitati de a defini un sir, siruri marginite, siruri monotone", "https://www.youtube.com/watch?v=ysz5S6PUM-U");

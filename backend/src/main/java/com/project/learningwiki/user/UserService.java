@@ -28,6 +28,10 @@ public class UserService {
         return userRepository.findAll().stream().filter(user -> user.getRole().equals("[ROLE_student, ROLE_professor]")).collect(Collectors.toList());
     }
 
+    public List<User> getAllStudents() {
+        return userRepository.findAll().stream().filter(user -> user.getRole().equals("[ROLE_student]")).collect(Collectors.toList());
+    }
+
     public User getRequestUser(HttpServletRequest request) {
         KeycloakAuthenticationToken token = (KeycloakAuthenticationToken) request.getUserPrincipal();
         KeycloakPrincipal principal = (KeycloakPrincipal) token.getPrincipal();
