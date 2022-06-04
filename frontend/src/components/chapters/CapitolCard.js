@@ -31,7 +31,7 @@ const CapitolCard = ({ courseName, chapter, handleLearnMore }) => {
         <CardHeader
           action={
             <IconButton onClick={() => handleLearnMore(chapter.link)}>
-              <QuestionMarkIcon />
+              {chapter.number}
             </IconButton>
           }
           title={chapter.name}

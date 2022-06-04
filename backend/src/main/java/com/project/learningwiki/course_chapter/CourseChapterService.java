@@ -18,4 +18,9 @@ public class CourseChapterService {
         List<CourseChapter> courseChapterList = courseChapterRepository.findByCourseNameAndYear(courseName, year);
         return courseChapterList.stream().map(CourseChapter::getChapter).collect(Collectors.toList());
     }
+
+    public List<Chapter> getChaptersByCourseName(String courseName) {
+        List<CourseChapter> courseChapterList = courseChapterRepository.findByCourseName(courseName);
+        return courseChapterList.stream().map(CourseChapter::getChapter).collect(Collectors.toList());
+    }
 }

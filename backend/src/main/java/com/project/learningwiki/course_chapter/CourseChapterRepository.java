@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface CourseChapterRepository extends JpaRepository<CourseChapter, Integer> {
     List<CourseChapter> findByCourseNameAndYear(String courseName, Integer year);
+    List<CourseChapter> findByCourseName(String courseName);
 }

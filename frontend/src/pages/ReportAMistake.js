@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from '@mui/material';
 import { Typography } from '@mui/material';
+import '../styles/mistakes.css'
 
 const ReportAMistake = () => {
     return (
-        <div className="container">
+        <div className="mistake">
             <div className="not-found">
                 <Typography
                     variant="h2"

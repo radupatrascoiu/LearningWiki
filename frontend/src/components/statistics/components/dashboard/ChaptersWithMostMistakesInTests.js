@@ -1,36 +1,51 @@
+import React, { useEffect, useState } from 'react'
 import 'chart.js/auto'
 import { Bar } from 'react-chartjs-2';
 import { Box, Button, Card, CardContent, CardHeader, Divider, useTheme } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { userApi } from '../../../../services/userApi';
+import { useKeycloak } from '@react-keycloak/web';
+import { capitalizeFirstLetter } from '../../../../utils/util';
 
 export const ChaptersWithMostMistakesInTests = (props) => {
   const theme = useTheme();
+  const { initialized, keycloak } = useKeycloak();
+  const [error, setError] = useState(false);
+  const [chapterMistakes, setChapterMistakes] = useState([]);
+
+  useEffect(async () => {
+    if (keycloak && initialized) {
+      try {
+        const response1 = await userApi.getChaptersWithMostMistakesInSolvedTestsByCourseName(keycloak?.token, props.courseName);
+
+        if (response1?.status === 200) {
+          setChapterMistakes(response1.data)
+        }
+      } catch (error) {
+        setError(true);
+      }
+    }
+  }, [keycloak, initialized])
 
   const data = {
     datasets: [
       {
-        backgroundColor: '#3F51B5',
+        backgroundColor: props.courseName === 'matematica' ? '#3F51B5' : '#E53935',
         barPercentage: 0.5,
         barThickness: 12,
         borderRadius: 4,
         categoryPercentage: 0.5,
-        data: [18, 5, 19, 27, 29, 19, 20],
-        label: 'Matematica',
-        maxBarThickness: 10
-      },
-      {
-        backgroundColor: '#EEEEEE',
-        barPercentage: 0.5,
-        barThickness: 12,
-        borderRadius: 4,
-        categoryPercentage: 0.5,
-        data: [11, 20, 12, 29, 30, 25, 13],
-        label: 'Informatica',
+        data: chapterMistakes?.map((chapterMistake, i) => (
+          chapterMistake.noMistakes
+        )),
+        label: props.courseName,
         maxBarThickness: 10
       }
     ],
-    labels: ['Cap 1', 'Cap 2', 'Cap 3', 'Cap 4', 'Cap 5', 'Cap 6', 'Cap 7']
+    labels: chapterMistakes?.map((chapterMistake, i) => (
+      "Cap " + chapterMistake.chapter.number
+    ))
   };
 
   const options = {
@@ -93,7 +108,7 @@ export const ChaptersWithMostMistakesInTests = (props) => {
             Last 7 days
           </Button>
         )}
-        title="Capitole cu cele mai multe greseli in teste"
+        title={"Capitole cu cele mai multe greseli in teste la " + capitalizeFirstLetter(props.courseName)}
       />
       <Divider />
       <CardContent>
@@ -127,4 +142,4 @@ export const ChaptersWithMostMistakesInTests = (props) => {
       </Box>
     </Card>
   );
-};
+}

@@ -11,7 +11,7 @@ const Chat = () => {
     return (initialized && keycloak?.authenticated &&
         <ChatEngine
             height="100vh"
-            projectID="9b00ac90-db16-4524-8f28-3169646e86b3"
+            projectID="28ab2168-4ea5-480c-97d2-2a7839e7b02b"
             userName={localStorage.getItem('username')}
             userSecret={localStorage.getItem('password')}
             onNewMessage={() => new Audio('https://chat-engine-assets.s3.amazonaws.com/click.mp3').play()}

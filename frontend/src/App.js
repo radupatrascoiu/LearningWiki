@@ -40,7 +40,7 @@ function App() {
             <Route exact path='/courses/:courseName/videoclipuri' element={<Videoclipuri />} />
             <Route exact path='/courses/:courseName/videoclipuri/:videoId' element={<VideoPage />} />
             <Route exact path='/cautaMentor' element={<CautaMentor />} />
-            {/* <Route exact path='/chat' element={<Chat />} /> */}
+            <Route exact path='/chat' element={<Chat />} />
             <Route exact path='/raporteazaOGreseala' element={<ReportAMistake />} />
             <Route exact path='/raporteazaOGresealaFormular' element={<ReportAMistakeForm />} />
             <Route exact path='/greseliRaportate' element={<ReportedMistakes />} />

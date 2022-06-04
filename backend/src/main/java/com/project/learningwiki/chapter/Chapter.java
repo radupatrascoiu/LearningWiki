@@ -22,23 +22,13 @@ public class Chapter {
     private String description;
     @Column(columnDefinition="TEXT")
     private String content;
+    private Integer number;
 
-//    @ManyToOne
-//    @JoinColumn(name = "TEST_ID")
-//    private Test test;
-
-//    public Chapter(String name, String description, String content, Test test) {
-//        this.name = name;
-//        this.description = description;
-//        this.content = content;
-//        this.test = test;
-//    }
-
-
-    public Chapter(String name, String description, String content) {
+    public Chapter(String name, String description, String content, Integer number) {
         this.name = name;
         this.description = description;
         this.content = content;
+        this.number = number;
     }
 
     @Override

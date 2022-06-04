@@ -73,7 +73,7 @@ const Dashboard = () => {
               xl={9}
               xs={12}
             >
-              <ChaptersWithMostMistakesInTests />
+              <ChaptersWithMostMistakesInTests courseName="matematica" />
             </Grid>
             <Grid
               item
@@ -82,7 +82,26 @@ const Dashboard = () => {
               xl={3}
               xs={12}
             >
-              <TestsPerformedInRecentMonths sx={{ height: '100%' }} />
+              <TestsPerformedInRecentMonths sx={{ height: '100%' }} courseName="matematica" />
+            </Grid>
+
+            <Grid
+              item
+              lg={8}
+              md={12}
+              xl={9}
+              xs={12}
+            >
+              <ChaptersWithMostMistakesInTests courseName="informatica" />
+            </Grid>
+            <Grid
+              item
+              lg={4}
+              md={6}
+              xl={3}
+              xs={12}
+            >
+              <TestsPerformedInRecentMonths sx={{ height: '100%' }} courseName="informatica" />
             </Grid>
 
             <Grid

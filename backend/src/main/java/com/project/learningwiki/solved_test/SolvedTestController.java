@@ -135,12 +135,12 @@ public class SolvedTestController {
                 .body(new ResponseDto("There are no rankings for users.", false));
     }
 
-    @GetMapping("/in_the_last_period")
+    @GetMapping("/in_the_last_period/{courseName}")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<?> getTestsInTheLastPeriodByClass(HttpServletRequest request) {
+    public ResponseEntity<?> getTestsInTheLastPeriodByClassAndCourseName(@PathVariable String courseName, HttpServletRequest request) {
         var currentUser = userService.getRequestUser(request);
         if (currentUser != null) {
-            List<SolvedTestsInTheLastPeriodDto> testsInTheLastPeriodByClass = solvedTestService.getTestsInTheLastPeriodByClass(currentUser);
+            List<SolvedTestsInTheLastPeriodDto> testsInTheLastPeriodByClass = solvedTestService.getTestsInTheLastPeriodByClassAndCourseName(currentUser, courseName);
             if (testsInTheLastPeriodByClass != null) {
                 return ResponseEntity.ok(testsInTheLastPeriodByClass);
             }
@@ -148,5 +148,16 @@ public class SolvedTestController {
 
         return ResponseEntity.badRequest()
                 .body(new ResponseDto("There are no solved tests for the current user in the last period.", false));
+    }
+
+    @GetMapping("/most_mistakes/{courseName}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> getChaptersWithMostMistakesInSolvedTestsByCourseName(@PathVariable(value = "courseName") String courseName) {
+        List<SolvedTestChaptersDto> solvedTestChapters = solvedTestService.getChaptersWithMostMistakesInSolvedTestsByCourseName(courseName);
+        if (solvedTestChapters == null) {
+            return ResponseEntity.badRequest()
+                    .body(new ResponseDto("This user doesn't have solved tests.", false));
+        }
+        return ResponseEntity.ok(solvedTestChapters);
     }
 }

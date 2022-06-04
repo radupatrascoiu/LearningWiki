@@ -10,6 +10,7 @@ import BatteryCharging20Icon from '@mui/icons-material/BatteryCharging20';
 import BatteryCharging30Icon from '@mui/icons-material/BatteryCharging30';
 import BatteryCharging50Icon from '@mui/icons-material/BatteryCharging50';
 import BatteryCharging90Icon from '@mui/icons-material/BatteryCharging90';
+import { capitalizeFirstLetter } from '../../../../utils/util';
 
 export const TestsPerformedInRecentMonths = (props) => {
   const theme = useTheme();
@@ -20,7 +21,7 @@ export const TestsPerformedInRecentMonths = (props) => {
   useEffect(async () => {
     if (keycloak && initialized) {
       try {
-        const response1 = await userApi.getTestsInTheLastPeriodByClass(keycloak?.token);
+        const response1 = await userApi.getTestsInTheLastPeriodByClassAndCourseName(keycloak?.token, props.courseName);
 
         if (response1?.status === 200) {
           setTestsInRecentPeriod(response1.data)
@@ -101,7 +102,7 @@ export const TestsPerformedInRecentMonths = (props) => {
 
   return (
     <Card {...props}>
-      <CardHeader title="Teste lucrare in functie de clasa" />
+      <CardHeader title={"Teste lucrare in functie de clasa la " + capitalizeFirstLetter(props.courseName)} />
       <Divider />
       <CardContent>
         <Box
