@@ -8,27 +8,27 @@ const Footer = () => {
       <div className='footer-links'>
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
-            <h2>About Us</h2>
-            <Link to='/'>How it works</Link>
-            <Link to='/'>Testimonials</Link>
-            <Link to='/'>Careers</Link>
-            <Link to='/'>Investors</Link>
-            <Link to='/'>Terms of Service</Link>
+            <h2>Despre noi</h2>
+            <Link to='/'>Cum functioneaza plaforma?</Link>
+            <Link to='/'>Testimoniale</Link>
+            <Link to='/'>Cariere</Link>
+            <Link to='/'>Investitori</Link>
+            <Link to='/'>Termeni si conditii</Link>
           </div>
           <div className='footer-link-items'>
-            <h2>Contact Us</h2>
-            <Link to='/'>Contact</Link>
-            <Link to='/'>Support</Link>
-            <Link to='/'>Sponsorships</Link>
+            <h2>Contact</h2>
+            <Link to='/'>Telefon</Link>
+            <Link to='/'>Suport</Link>
+            <Link to='/'>Sponsori</Link>
           </div>
         </div>
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
-            <h2>Videos</h2>
-            <Link to='/'>Submit Video</Link>
-            <Link to='/'>Ambassadors</Link>
-            <Link to='/'>Agency</Link>
-            <Link to='/'>Influencer</Link>
+            <h2>Videoclipuri</h2>
+            <Link to='/'>Videoclipuri trimise</Link>
+            <Link to='/'>Ambasadori</Link>
+            <Link to='/'>Agentie</Link>
+            <Link to='/'>Influenceri</Link>
           </div>
           <div className='footer-link-items'>
             <h2>Social Media</h2>

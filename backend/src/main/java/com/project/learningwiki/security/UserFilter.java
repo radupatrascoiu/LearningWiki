@@ -34,13 +34,18 @@ public class UserFilter implements Filter {
             AccessToken accessToken = session.getToken();
             var emailId = accessToken.getEmail();
             var name = accessToken.getName();
-            if (userRepository.findByEmail(emailId) == null) {
+
+            User userToCheck = userRepository.findByEmail(emailId);
+            if (userToCheck == null) {
                 User user = new User();
 
                 user.setRole(token.getAuthorities().toString());
                 user.setEmail(emailId);
                 user.setName(name);
                 userRepository.save(user);
+            } else {
+                userToCheck.setRole(token.getAuthorities().toString());
+                userRepository.save(userToCheck);
             }
         }
         filterChain.doFilter(request, response);

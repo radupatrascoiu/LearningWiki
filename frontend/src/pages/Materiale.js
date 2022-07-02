@@ -65,14 +65,6 @@ const Materiale = (props) => {
               </ListItemText>
             </ListItem>
 
-            <ListItem button onClick={() => setClasa("facultate")}>
-              <ListItemIcon>
-                <SchoolIcon />
-              </ListItemIcon>
-              <ListItemText>
-                Facultate
-              </ListItemText>
-            </ListItem>
           </List>
           <Divider />
 

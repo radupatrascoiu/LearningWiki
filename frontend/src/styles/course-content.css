@@ -1,0 +1,8 @@
+.courseContent {
+    width: 75%;
+    justify-content: center;
+    text-align: left;
+    margin: auto;
+    margin-top: 25px;
+    background-color: yellowgreen;
+}

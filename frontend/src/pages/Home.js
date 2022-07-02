@@ -51,18 +51,25 @@ const Home = () => {
         backgroundColor: 'lightblue',
         borderRadius: '8px',
         textAlign: 'center',
-        width: 330,
+        width: 430,
         pading: 10
       }}>
-      FAQ (How it works?) </p>,
+      FAQ (Cum functioneaza?) </p>,
     rows: [
       {
         title: "Cum îmi fac un cont nou?",
         content: "Accesând secţiunea 'Sign in'. Te poţi conecta fie prind creandu-ti un cont nou, fie folosind contul Google."
       },
       {
-        title: "Cum mă înrolez la un curs?",
-        content: "Pentru a te înrola la un curs trebuie să ai un cont de student și să accesezi secțiunea 'Courses'. "
+        title: "Cum pot accesa un curs?",
+        content: "Pentru a accesa un curs trebuie să fii logat și să accesezi secțiunea 'Cursuri'. "
+      }
+      , {
+        title: "Cum pot rezolva teste?",
+        content: "Pentru a rezolva teste trebuie sa alegi materia dorita din sectiunea de 'Cursuri' si apoi sa mergi la 'Teste'. "
+      }, {
+        title: "Cum stiu cand am primit feedback?",
+        content: "Odata primite un feedback de la mentor, vei fi notificat prin email. "
       }]
   }
 

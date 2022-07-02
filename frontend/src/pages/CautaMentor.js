@@ -29,9 +29,8 @@ const CautaMentor = () => {
                     Alegeti mentorul din profesorii de mai jos:
                 </Typography>
             </div>
-
             <MyCarousel />
-        </div>
+        </div >
     );
 }
 

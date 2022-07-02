@@ -19,6 +19,7 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column(columnDefinition="TEXT")
     private String title;
 
     @ManyToMany(cascade = CascadeType.ALL)

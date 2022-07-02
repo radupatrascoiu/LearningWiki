@@ -5,6 +5,7 @@ import { userApi } from "../../services/userApi";
 import { useKeycloak } from '@react-keycloak/web';
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
+import '../../styles/course-content.css'
 
 const HtmlViewer = ({ chapterId }) => {
     const { initialized, keycloak } = useKeycloak();
@@ -27,7 +28,7 @@ const HtmlViewer = ({ chapterId }) => {
         <div className="courseContent">
             <MDEditor.Markdown source={content} />
 
-            {/* <td dangerouslySetInnerHTML={{ __html: contentState }} /> */}
+            {/* <td dangerouslySetInnerHTML={{ __html: content }} /> */}
         </div>
     );
 }

@@ -46,7 +46,7 @@ const VideoPage = () => {
                     width='1080px'
                     height='600px'
                     controls
-                    url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+                    url={video.link}
                 />
             </div>
         </div>

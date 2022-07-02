@@ -88,8 +88,7 @@ const Courses = () => {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small">Enroll me</Button>
-                                        <Button size="small" onClick={() => navigate(`/courses/${course.name}`)}>Learn More</Button>
+                                        <Button size="small" onClick={() => navigate(`/courses/${course.name}`)}>Afla mai multe</Button>
                                     </CardActions>
                                 </Card>
                             ))

@@ -35,7 +35,8 @@ export const userApi = {
     getLastSolvedTestsByUser,
     getAllUsersProgress,
     getTestsInTheLastPeriodByClassAndCourseName,
-    getChaptersWithMostMistakesInSolvedTestsByCourseName
+    getChaptersWithMostMistakesInSolvedTestsByCourseName,
+    getChapterWithMostMistakesInSolvedTestsByCourseName
 }
 
 function getUsers(token) {
@@ -319,6 +320,14 @@ function getTestsInTheLastPeriodByClassAndCourseName(token, courseName) {
 
 function getChaptersWithMostMistakesInSolvedTestsByCourseName(token, courseName) {
     return instance.get(`/api/solved_tests/most_mistakes/${courseName}`, {
+        headers: {
+            'Authorization': bearerAuth(token)
+        }
+    })
+}
+
+function getChapterWithMostMistakesInSolvedTestsByCourseName(token, courseName) {
+    return instance.get(`/api/solved_tests/course_with_most_mistakes/${courseName}`, {
         headers: {
             'Authorization': bearerAuth(token)
         }

@@ -160,4 +160,15 @@ public class SolvedTestController {
         }
         return ResponseEntity.ok(solvedTestChapters);
     }
+
+    @GetMapping("/course_with_most_mistakes/{courseName}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> getChapterWithMostMistakesInSolvedTestsByCourseName(@PathVariable(value = "courseName") String courseName) {
+        SolvedTestChaptersDto solvedTestChapter = solvedTestService.getChapterWithMostMistakesInSolvedTestsByCourseName(courseName);
+        if (solvedTestChapter == null) {
+            return ResponseEntity.badRequest()
+                    .body(new ResponseDto("This user doesn't have solved tests.", false));
+        }
+        return ResponseEntity.ok(solvedTestChapter);
+    }
 }

@@ -20,7 +20,17 @@ const useStyles = makeStyles({
         backgroundColor: "#fafafa",
         transition: "transform 0.5s ease-in-out",
         "&:hover": { transform: "scale3d(1.1, 1.1, 1)" },
-        height: "250px"
+        height: "250px",
+        width: "350px"
+    },
+
+    card2: {
+        boxShadow: "0 5px 8px 0 rgba(0, 0, 0, 0.3)",
+        backgroundColor: "#32CD32",
+        transition: "transform 0.5s ease-in-out",
+        "&:hover": { transform: "scale3d(1.1, 1.1, 1)" },
+        height: "250px",
+        width: "350px"
     }
 });
 
@@ -48,7 +58,7 @@ const TestCard = ({ courseName, test }) => {
     return (
         <div onClick={() => navigate(`/courses/${courseName}/teste/${test.id}`)}>
             <Card
-                className={classes.card}
+                className={solvedTest?.score === test?.questions?.length ? classes.card2 : classes.card}
                 elevation={1}
             >
                 <CardHeader

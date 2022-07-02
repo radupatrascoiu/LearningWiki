@@ -20,6 +20,7 @@ const useStyles = makeStyles({
         backgroundColor: "#fafafa",
         transition: "transform 0.5s ease-in-out",
         "&:hover": { transform: "scale3d(1.1, 1.1, 1)" },
+        width: "1100px"
     }
 });
 

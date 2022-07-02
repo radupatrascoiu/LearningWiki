@@ -103,10 +103,21 @@ const Course = () => {
   const [myMentor, setMyMentor] = useState(null);
   const [tests, setTests] = useState([]);
   const [solvedTests, setSolvedTests] = useState([]);
+  const [mostMistakes, setMostMistakes] = useState(null);
 
   useEffect(async () => {
     if (keycloak && initialized) {
       try {
+
+
+        console.log("aici")
+        const response5 = await userApi.getChapterWithMostMistakesInSolvedTestsByCourseName(keycloak.token, courseName);
+        console.log(response5)
+        console.log("acolo")
+        if (response5?.data !== null && response5?.data !== undefined && response5?.data != '') {
+          setMostMistakes(response5.data);
+        }
+
         const response = await userApi.getCourse(keycloak?.token, courseName);
         setCourse(response.data);
 
@@ -131,6 +142,8 @@ const Course = () => {
     }
   }, [keycloak, initialized])
 
+  console.log(mostMistakes)
+
   return (
     <div className="courseContainer">
       {course &&
@@ -147,6 +160,10 @@ const Course = () => {
                   <TableRow key={1 + "credits"}>
                     <TableCell>Progresul meu 💰</TableCell>
                     <TableCell className="sizedText" style={{ fontWeight: "bold" }} align="center">{solvedTests.length}/{tests.length} teste</TableCell>
+                  </TableRow>
+                  <TableRow key={1 + "chapters"}>
+                    <TableCell>Capitol sugerat: 📖</TableCell>
+                    <TableCell className="sizedText" style={{ fontWeight: "bold" }} align="center">{mostMistakes?.chapter?.name}</TableCell>
                   </TableRow>
                   <TableRow key={1 + "infos"}>
                     <TableCell>Informatii ℹ️</TableCell>

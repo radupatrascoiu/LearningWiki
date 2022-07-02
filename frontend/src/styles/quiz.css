@@ -2,7 +2,7 @@
     position: relative;
     margin: 160px auto 20px;
     width: 95%;
-    max-width: 850px;
+    max-width: 950px;
     min-height: 350px;
     background: #fff;
     border: 1px solid #eee;
@@ -37,7 +37,7 @@
 }
 
 .quiz-screen .question .progress-bar.active {
-    animation: progress 10s linear;
+    animation: progress 60s linear;
 }
 
 .quiz-screen .question .question-count {
@@ -80,16 +80,6 @@
 
 .quiz-screen .question .main .options .option.active {
     background: #1428cd;
-    color: #fff;
-}
-
-.quiz-screen .question .main .options .option.correct {
-    background: #51cb21;
-    color: #fff;
-}
-
-.quiz-screen .question .main .options .option.wrong {
-    background: #d70f0f;
     color: #fff;
 }
 

@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import { useEffect, useState } from "react";
 import { useKeycloak } from '@react-keycloak/web';
 
-const User = (props) => {
+const Administrare = (props) => {
     const [username, setUsername] = useState("")
     const { initialized, keycloak } = useKeycloak();
 
@@ -15,7 +15,7 @@ const User = (props) => {
     }, [keycloak, initialized])
 
     return (
-        <Button variant="contained" color="primary" onClick={() => window.location.href = "http://localhost:8080/realms/master/account/"}>{username}</Button>
+        <Button variant="contained" color="success" onClick={() => window.location.href = "http://localhost:8080/"}>{username}</Button>
     )
 }
-export default User;
+export default Administrare;

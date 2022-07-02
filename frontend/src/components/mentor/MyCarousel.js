@@ -86,7 +86,7 @@ const MyCarousel = () => {
 
   return (
     <div>
-      <ReactCardCarousel autoplay={true} autoplay_speed={2500}>
+      <ReactCardCarousel autoplay={false} autoplay_speed={2500}>
         {
           professors && professors.map((professor, idx) => (
             <div key={idx} style={CARD_STYLE}>
@@ -121,6 +121,9 @@ const MyCarousel = () => {
                     {
                       professor.name === 'Profesorul Nr 5' ? 'Invatare motivanta si semnificativa' : ''
                     }
+                    {
+                      !professor.name.includes('Profesorul') ? 'Hotărâre, efort și timp...' : ''
+                    }
                   </Typography>
                 </div>
               </ThemeProvider>
@@ -139,6 +142,9 @@ const MyCarousel = () => {
               }
               {
                 professor.name === 'Profesorul Nr 5' ? <img className="logo-card" src={prof5} alt="Learning Wiki" /> : ''
+              }
+              {
+                !professor.name.includes('Profesorul') ? <img className="logo-card" src={prof5} alt="Learning Wiki" /> : ''
               }
               <div className="btn">
                 {
@@ -180,12 +186,13 @@ const MyCarousel = () => {
             gutterBottom
             variant="overline"
           >
-            *Ti-ai ales deja mentorul.
+            {console.log(myMentor)}
+            *Ti-ai ales deja mentorul(<b>{myMentor.name}</b>)
           </Typography>
         </div>
       }
 
-    </div>
+    </div >
   );
 }
 

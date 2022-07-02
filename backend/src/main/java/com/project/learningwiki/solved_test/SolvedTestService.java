@@ -183,4 +183,53 @@ public class SolvedTestService {
             return solvedTestChapters;
         }
     }
+
+    public SolvedTestChaptersDto getChapterWithMostMistakesInSolvedTestsByCourseName(String courseName) {
+        synchronized (this) {
+            List<SolvedTest> attemptedTests = solvedTestRepository.findAll()
+                    .stream()
+                    .filter(solvedTest -> courseName.equals(solvedTest.getTest().getCourseName()))
+                    .filter(solvedTest -> solvedTest.getScore() != solvedTest.getTest().getQuestions().size()).collect(Collectors.toList());
+
+            List<Chapter> chapters = courseChapterService.getChaptersByCourseName(courseName);
+
+            ConcurrentHashMap<Chapter, Integer> solvedTestChaptersHashMap = new ConcurrentHashMap<>();
+
+            for (Chapter chapter : chapters) {
+                solvedTestChaptersHashMap.put(chapter, 0);
+            }
+
+            for (SolvedTest solvedTest : attemptedTests) {
+                if (solvedTest != null) {
+                    if (solvedTest.getMarkedAnswers() != null) {
+                        List<MarkedAnswer> markedAnswers = solvedTest.getMarkedAnswers();
+                        for (int i = 0; i < markedAnswers.size(); i++) {
+                            if (!Objects.equals(markedAnswers.get(i).getIndex(), solvedTest.getTest().getQuestions().get(i).getCorrectOptionIndex())) {
+                                Chapter chapter = solvedTest.getTest().getQuestions().get(i).getChapter();
+                                solvedTestChaptersHashMap.replace(chapter, solvedTestChaptersHashMap.get(chapter) + 1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            List<SolvedTestChaptersDto> solvedTestChapters = new ArrayList<>();
+
+            for (Map.Entry<Chapter, Integer> entry : solvedTestChaptersHashMap.entrySet()) {
+                Chapter key = entry.getKey();
+                Integer value = entry.getValue();
+                if (value != 0) {
+                    solvedTestChapters.add(new SolvedTestChaptersDto(key, value));
+                }
+            }
+
+            solvedTestChapters.sort(Comparator.comparing(SolvedTestChaptersDto::getNoMistakes).reversed());
+
+            if (solvedTestChapters.size() > 0) {
+                return solvedTestChapters.get(0);
+            }
+
+            return new SolvedTestChaptersDto(new Chapter(), 0);
+        }
+    }
 }

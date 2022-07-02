@@ -25,7 +25,7 @@ const Question = ({ question, totalQuestions, currentQuestion, setAnswer, test }
         setTimeout(() => {
             progressBar.current.classList.add("active");
         }, 0);
-        timer.current = setTimeout(goToNextQuestion, 100 * 1000); // 10 seconds
+        timer.current = setTimeout(goToNextQuestion, 60 * 1000); // 10 seconds
         return goToNextQuestion;
     }, [question]);
 

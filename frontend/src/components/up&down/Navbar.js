@@ -19,6 +19,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useNavigate } from "react-router-dom";
+import Administrare from '../authentication/Administrare';
 
 function Navbar() {
     const [isProfessor, setIsProfessor] = useState(false);
@@ -120,7 +121,12 @@ function Navbar() {
                                         open={Boolean(anchorEl)}
                                         onClose={handleClose}
                                     >
-                                        <MenuItem onClick={handleClose}><User keycloak={keycloak} /></MenuItem>
+                                        {initialized && keycloak?.authenticated && !AuthorizedFunction(keycloak, ['admin']) &&
+                                            <MenuItem onClick={handleClose}><User keycloak={keycloak} /></MenuItem>
+                                        }
+                                        {initialized && keycloak?.authenticated && AuthorizedFunction(keycloak, ['admin']) &&
+                                            <MenuItem onClick={handleClose}><Administrare keycloak={keycloak} /></MenuItem>
+                                        }
                                         <MenuItem onClick={handleClose}><Logout keycloak={keycloak} /></MenuItem>
                                     </Menu>
                                 </div>
